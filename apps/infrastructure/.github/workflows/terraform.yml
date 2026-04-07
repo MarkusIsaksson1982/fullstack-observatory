@@ -1,0 +1,40 @@
+name: Terraform CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  terraform:
+    name: fmt + validate + plan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+
+      - name: Terraform Format
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init & Validate (all environments)
+        run: |
+          for env in environments/*/; do
+            echo "=== Validating $env ==="
+            pushd "$env" > /dev/null
+            terraform init -backend=false -input=false
+            terraform validate
+            popd > /dev/null
+          done
+
+      - name: Terraform Plan (hobby example - others require secrets)
+        run: |
+          pushd environments/hobby > /dev/null
+          terraform plan -var 'cloudflare_api_token=dummy' -var 'cloudflare_account_id=dummy' -var 'zone_id=dummy' || echo "Plan skipped (expected in CI without secrets)"
+          popd > /dev/null

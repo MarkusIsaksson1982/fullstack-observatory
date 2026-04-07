@@ -1,0 +1,52 @@
+{
+  "name": "fullstack-api-server",
+  "version": "1.0.0",
+  "description": "Production Express.js REST API for Layer 2 of The Full Stack Observatory.",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "jest --runInBand",
+    "lint": "eslint src tests"
+  },
+  "dependencies": {
+    "@observatory/metrics": "file:../../packages/metrics",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1",
+    "pino": "^9.5.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "clearMocks": true,
+    "testEnvironment": "node"
+  },
+  "eslintConfig": {
+    "env": {
+      "es2022": true,
+      "jest": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2022
+    },
+    "rules": {
+      "no-console": "off"
+    }
+  }
+}

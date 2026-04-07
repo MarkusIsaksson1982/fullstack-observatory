@@ -22,8 +22,8 @@ services:
 
   api:
     build:
-      context: ..
-      dockerfile: fullstack-observatory/api.Dockerfile
+      context: .
+      dockerfile: ./apps/api-server/Dockerfile
     container_name: fullstack-api
     restart: unless-stopped
     environment:
@@ -38,6 +38,12 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     networks:
       - fullstack-network
 
@@ -48,7 +54,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro   # ← single clean config
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       api:
         condition: service_healthy

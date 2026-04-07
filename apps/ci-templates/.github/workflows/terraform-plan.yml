@@ -1,0 +1,38 @@
+name: Terraform Plan
+
+on:
+  workflow_call:
+    inputs:
+      terraform-version:
+        description: "Terraform version"
+        required: false
+        type: string
+        default: "1.9.0"
+      environments-dir:
+        description: "Directory containing environment subdirectories"
+        required: false
+        type: string
+        default: "environments"
+
+jobs:
+  validate:
+    name: Format + Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ inputs.terraform-version }}
+
+      - name: Check formatting
+        run: terraform fmt -check -recursive
+
+      - name: Validate all environments
+        run: |
+          for env in ${{ inputs.environments-dir }}/*/; do
+            echo "=== Validating $env ==="
+            pushd "$env" > /dev/null
+            terraform init -backend=false -input=false
+            terraform validate
+            popd > /dev/null

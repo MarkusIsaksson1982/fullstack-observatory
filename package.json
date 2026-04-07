@@ -1,5 +1,24 @@
 {
-  "dependencies": {
-    "@observatory/metrics": "file:packages/metrics"
+  "name": "fullstack-observatory",
+  "version": "0.2.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "compose": "docker compose -f docker-compose.fullstack.yml up -d --build",
+    "compose:down": "docker compose -f docker-compose.fullstack.yml down"
+  },
+  "devDependencies": {
+    "turbo": "^2.4.4"
+  },
+  "packageManager": "npm@11.6.2",
+  "engines": {
+    "node": "22.x"
   }
 }

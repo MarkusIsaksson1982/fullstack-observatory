@@ -1,0 +1,35 @@
+{
+  "name": "fullstack-database",
+  "version": "1.0.0",
+  "description": "PostgreSQL schema for Layer 3 of The Full Stack Observatory",
+  "main": "index.js",
+  "scripts": {
+    "migrate:up": "node-pg-migrate up",
+    "migrate:down": "node-pg-migrate down",
+    "migrate:redo": "node-pg-migrate redo",
+    "seed": "psql $DATABASE_URL -f seed/seed.sql",
+    "setup": "./scripts/setup.sh",
+    "reset": "./scripts/reset.sh"
+  },
+  "keywords": [
+    "postgresql",
+    "database",
+    "schema",
+    "migrations",
+    "fullstack-observatory"
+  ],
+  "author": "Markus Isaksson",
+  "license": "MIT",
+  "devDependencies": {
+    "node-pg-migrate": "^6.2.2",
+    "pg": "^8.11.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "node-pg-migrate": {
+    "migration-file-language": "sql",
+    "migrations-dir": "migrations",
+    "schema-file": "docs/SCHEMA.md"
+  }
+}

@@ -1,0 +1,14 @@
+# Example: How to use the Node.js CI workflow in your own repo
+# Place this at .github/workflows/ci.yml in your project
+
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ci:
+    uses: MarkusIsaksson1982/fullstack-ci-templates/.github/workflows/node-ci.yml@main
+    with:
+      node-version: "20"

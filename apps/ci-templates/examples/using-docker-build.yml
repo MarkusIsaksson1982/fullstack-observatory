@@ -1,0 +1,17 @@
+# Example: How to use the Docker Build workflow
+# Place this at .github/workflows/docker.yml in your project
+
+name: Docker
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - "src/**"
+
+jobs:
+  build:
+    uses: MarkusIsaksson1982/fullstack-ci-templates/.github/workflows/docker-build.yml@main
+    with:
+      image-name: my-app

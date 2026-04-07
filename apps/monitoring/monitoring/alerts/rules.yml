@@ -1,0 +1,42 @@
+groups:
+  - name: layer11-monitoring-alerts
+    rules:
+      - alert: FullstackMonitoringServiceDown
+        expr: up{job="fullstack-monitoring"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          layer: "11"
+        annotations:
+          summary: "fullstack-monitoring is down"
+          description: "Prometheus has not been able to scrape the /metrics endpoint for at least 1 minute."
+
+      - alert: FullstackMonitoringReadinessFailed
+        expr: fullstack_monitoring_app_readiness_status == 0
+        for: 2m
+        labels:
+          severity: critical
+          layer: "11"
+        annotations:
+          summary: "readiness check is failing"
+          description: "At least one dependency check has been unhealthy for 2 minutes."
+
+      - alert: FullstackMonitoringHighLatencyP95
+        expr: histogram_quantile(0.95, sum(rate(fullstack_monitoring_http_request_duration_seconds_bucket[5m])) by (le)) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          layer: "11"
+        annotations:
+          summary: "p95 latency is above 500 ms"
+          description: "The 95th percentile request latency has exceeded the Layer 11 threshold for 5 minutes."
+
+      - alert: FullstackMonitoringHigh5xxRate
+        expr: sum(rate(fullstack_monitoring_http_requests_total{status_code=~"5.."}[5m])) / clamp_min(sum(rate(fullstack_monitoring_http_requests_total[5m])), 0.001) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          layer: "11"
+        annotations:
+          summary: "5xx error rate is above 5%"
+          description: "More than 5% of requests have returned 5xx responses over the last 5 minutes."
