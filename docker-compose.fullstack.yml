@@ -1,0 +1,98 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: fullstack-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Optional: mount init scripts from database repo if you add them
+      # - ../fullstack-database/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ../fullstack-api-server
+      dockerfile: Dockerfile
+    container_name: fullstack-api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      PORT: 3000
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      # Add any extra vars your .env.example in api-server uses
+      AUTH_BEARER_TOKEN: ${AUTH_BEARER_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
+      LOG_LEVEL: info
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - fullstack-network
+
+  nginx:
+    build:
+      context: ../fullstack-server-configs
+      # If it doesn't have a Dockerfile yet, you can use the containerized one or add one
+      dockerfile: Dockerfile
+    container_name: fullstack-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - fullstack-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: fullstack-prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - fullstack-network
+
+  grafana:
+    image: grafana/grafana:11.0.0
+    container_name: fullstack-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      # Optional provisioning from monitoring repo
+      # - ../fullstack-monitoring/grafana/provisioning:/etc/grafana/provisioning
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - fullstack-network
+
+volumes:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  fullstack-network:
+    driver: bridge
+    name: fullstack-network
