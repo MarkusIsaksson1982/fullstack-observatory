@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "type": "commonjs",
   "engines": {
-    "node": ">=20.11.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "start": "node src/server.js",
@@ -18,10 +18,7 @@
     "@observatory/healthcheck": "file:../../packages/healthcheck",
     "@observatory/core": "file:../../packages/core",
     "@observatory/metrics": "file:../../packages/metrics",
-    "cors": "^2.8.5",
     "express": "^4.21.2",
-    "express-rate-limit": "^7.5.0",
-    "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.1",
     "pino": "^9.5.0",

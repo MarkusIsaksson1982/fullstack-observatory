@@ -28,6 +28,7 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
       - ./grafana/dashboard.json:/var/lib/grafana/dashboards/dashboard.json:ro
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
 
 volumes:
   grafana-data:

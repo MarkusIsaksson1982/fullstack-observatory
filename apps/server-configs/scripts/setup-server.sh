@@ -27,10 +27,10 @@ echo "Installing nginx..."
 apt-get install -y -qq nginx
 systemctl enable nginx
 
-# Install Node.js 20 LTS
-echo "Installing Node.js 20 LTS..."
+# Install Node.js 22 LTS
+echo "Installing Node.js 22 LTS..."
 if ! command -v node >/dev/null 2>&1; then
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
     apt-get install -y -qq nodejs
 fi
 echo "  Node.js $(node --version)"

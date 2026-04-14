@@ -7,7 +7,14 @@ One-command orchestration of the entire Full Stack Observatory.
 - Git
 - ~8 GB RAM recommended (Prometheus + Grafana + Postgres + Node)
 
-## Recommended workspace layout
+## Repository layout
+
+The runnable demo already lives inside this repository under `apps/` and `packages/`.
+You do **not** need to clone separate layer repos to start the stack.
+
+## Optional companion repos
+
+If you want each layer split out as its own teaching repo, you can clone the mirrored companions alongside this workspace:
 ```bash
 mkdir fullstack-observatory-workspace
 cd fullstack-observatory-workspace

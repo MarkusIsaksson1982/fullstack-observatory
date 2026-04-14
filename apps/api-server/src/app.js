@@ -12,7 +12,6 @@ const { NotFoundError, normalizeError } = require('@observatory/core');
 // Shared observatory packages
 const logger = require('@observatory/logger');
 const { metricsMiddleware, metricsEndpoint } = require('@observatory/metrics');
-const { createHealthRouter: createObservatoryHealthRouter } = require('@observatory/healthcheck');
 
 function createApp(options = {}) {
   const app = express();

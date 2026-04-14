@@ -44,8 +44,9 @@ async function initializeDatabase() {
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
-        role TEXT NOT NULL DEFAULT 'member',
-        created_at DATE NOT NULL DEFAULT CURRENT_DATE
+        email TEXT UNIQUE,
+        role TEXT DEFAULT 'member',
+        created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
       );
     `);
 
@@ -55,11 +56,11 @@ async function initializeDatabase() {
 
     if (result.rows[0].count === 0) {
       await client.query(`
-        INSERT INTO users (name, role, created_at)
+        INSERT INTO users (name, role, email, created_at)
         VALUES
-          ('Ada Lovelace', 'engineer', '1843-01-01'),
-          ('Alan Turing', 'architect', '1936-06-15'),
-          ('Grace Hopper', 'lead', '1952-03-01');
+          ('Ada Lovelace', 'engineer', NULL, '1843-01-01'),
+          ('Alan Turing', 'architect', NULL, '1936-06-15'),
+          ('Grace Hopper', 'lead', NULL, '1952-03-01');
       `);
     }
   } catch (error) {

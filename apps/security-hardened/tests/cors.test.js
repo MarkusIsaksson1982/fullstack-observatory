@@ -33,6 +33,16 @@ describe("CORS allowlist", () => {
     expect(res.headers["access-control-allow-methods"]).toMatch(/POST/);
   });
 
+  test("rejects preflight OPTIONS from a non-allowlisted origin", async () => {
+    const res = await request(app)
+      .options("/api/health")
+      .set("Origin", "https://evil.com")
+      .set("Access-Control-Request-Method", "POST");
+
+    expect(res.status).toBe(403);
+    expect(res.body).toEqual({ error: "Forbidden", message: "Origin not allowed" });
+  });
+
   test("never uses wildcard for Access-Control-Allow-Origin", async () => {
     const res = await request(app).get("/api/health").set("Origin", "https://your-app.com");
     expect(res.headers["access-control-allow-origin"]).not.toBe("*");

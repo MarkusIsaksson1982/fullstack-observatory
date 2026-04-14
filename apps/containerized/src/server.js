@@ -33,7 +33,8 @@ app.get('/', async (req, res) => {
     const pong = await redis.get('observatory:ping');
     status.redis = pong === 'pong' ? 'connected' : 'unexpected response';
   } catch (err) {
-    status.redis = `error: ${err.message}`;
+    console.error('Redis request failed:', err.message);
+    status.redis = 'temporary service issue';
   }
 
   res.json({

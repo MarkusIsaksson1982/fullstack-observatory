@@ -14,18 +14,17 @@ prom.collectDefaultMetrics({ register });
 const httpRequestsTotal = new prom.Counter({
   name: 'http_requests_total',
   help: 'Total number of HTTP requests',
-  labelNames: ['method', 'route', 'status']
+  labelNames: ['method', 'route', 'status'],
+  registers: [register]
 });
 
 const httpRequestDurationSeconds = new prom.Histogram({
   name: 'http_request_duration_seconds',
   help: 'HTTP request duration in seconds',
   labelNames: ['method', 'route'],
-  buckets: [0.1, 0.5, 1, 2, 5, 10]
+  buckets: [0.1, 0.5, 1, 2, 5, 10],
+  registers: [register]
 });
-
-register.registerMetric(httpRequestsTotal);
-register.registerMetric(httpRequestDurationSeconds);
 
 // Middleware for Express
 function metricsMiddleware(req, res, next) {

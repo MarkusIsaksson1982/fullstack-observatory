@@ -27,7 +27,7 @@ jobs:
   ci:
     uses: MarkusIsaksson1982/fullstack-ci-templates/.github/workflows/node-ci.yml@main
     with:
-      node-version: '20'
+      node-version: '22'
 ```
 
 See `examples/` for complete usage examples.
