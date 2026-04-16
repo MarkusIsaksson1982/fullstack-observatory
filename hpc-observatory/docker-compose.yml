@@ -29,6 +29,7 @@ services:
     environment:
       - PUSHGATEWAY_URL=http://prometheus:9091
       - CLUSTER_NAME=hpc-cluster
+      - SCHEDULER_HOST=scheduler
     volumes:
       - ./apps/hooks/hooks:/opt/hpc-observatory/hooks
       - hook_logs:/var/log/pbs/hooks
@@ -44,6 +45,7 @@ services:
     environment:
       - PUSHGATEWAY_URL=prometheus:9091
       - INTERVAL=15
+      - SCHEDULER_HOST=scheduler
     depends_on:
       - scheduler
     networks:

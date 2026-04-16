@@ -124,7 +124,8 @@ class HPCMetricsExporter:
 
     def fetch_from_scheduler(self, endpoint: str) -> Dict:
         import urllib.request
-        url = f"http://localhost:8080{endpoint}"
+        scheduler_host = os.environ.get("SCHEDULER_HOST", "scheduler")
+        url = f"http://{scheduler_host}:8080{endpoint}"
         try:
             with urllib.request.urlopen(url, timeout=5) as response:
                 return json.loads(response.read().decode())
