@@ -1,0 +1,21 @@
+name: fullstack-observatory
+
+# ================================================
+# Combined Orchestrator – Both Observatories
+# ================================================
+# This is the recommended main entry point.
+#
+# Usage:
+#   docker compose --profile fullstack up -d    # Run only Fullstack Observatory
+#   docker compose --profile hpc up -d         # Run only HPC-Observatory (the showcase)
+#   docker compose --profile fullstack,hpc up -d  # Run BOTH safely at the same time
+#   docker compose down                         # Stop everything
+
+include:
+  - path: ./docker-compose.fullstack.yml
+    project_directory: .
+    profiles: ["fullstack"]
+
+  - path: ./hpc-observatory/docker-compose.yml
+    project_directory: ./hpc-observatory
+    profiles: ["hpc"]

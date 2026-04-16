@@ -1,5 +1,8 @@
+name: fullstack-observatory
+
 services:
   postgres:
+    profiles: ["fullstack"]
     image: postgres:16-alpine
     container_name: fullstack-postgres
     restart: unless-stopped
@@ -21,6 +24,7 @@ services:
       - fullstack-network
 
   api:
+    profiles: ["fullstack"]
     build:
       context: .
       dockerfile: ./apps/api-server/Dockerfile
@@ -48,6 +52,7 @@ services:
       - fullstack-network
 
   nginx:
+    profiles: ["fullstack"]
     image: nginx:alpine
     container_name: fullstack-nginx
     restart: unless-stopped
@@ -62,12 +67,13 @@ services:
       - fullstack-network
 
   prometheus:
+    profiles: ["fullstack"]
     image: prom/prometheus:latest
     container_name: fullstack-prometheus
     restart: unless-stopped
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - ./alert.rules.yml:/etc/prometheus/alert.rules.yml:ro   # ← NEW LINE
+      - ./alert.rules.yml:/etc/prometheus/alert.rules.yml:ro
       - prometheus_data:/prometheus
     ports:
       - "9090:9090"
@@ -75,6 +81,7 @@ services:
       - fullstack-network
 
   grafana:
+    profiles: ["fullstack"]
     image: grafana/grafana:11.0.0
     container_name: fullstack-grafana
     restart: unless-stopped
@@ -93,6 +100,7 @@ services:
       - fullstack-network
 
   alertmanager:
+    profiles: ["fullstack"]
     image: prom/alertmanager:latest
     container_name: fullstack-alertmanager
     restart: unless-stopped
@@ -104,6 +112,7 @@ services:
       - fullstack-network
 
   postgres-exporter:
+    profiles: ["fullstack"]
     image: prometheuscommunity/postgres-exporter:latest
     container_name: fullstack-postgres-exporter
     restart: unless-stopped

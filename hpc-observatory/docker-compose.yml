@@ -1,5 +1,6 @@
 services:
   scheduler:
+    profiles: ["hpc"]
     build:
       context: ./apps/scheduler
       dockerfile: Dockerfile
@@ -21,6 +22,7 @@ services:
       start_period: 10s
 
   hook-executor:
+    profiles: ["hpc"]
     build:
       context: ./apps/hooks
       dockerfile: Dockerfile
@@ -37,6 +39,7 @@ services:
       - hpc-network
 
   metrics-exporter:
+    profiles: ["hpc"]
     build:
       context: ./apps/hooks
       dockerfile: Dockerfile.exporter
@@ -52,6 +55,7 @@ services:
       - hpc-network
 
   node-agent-1:
+    profiles: ["hpc"]
     build:
       context: ./apps/node-agent
       dockerfile: Dockerfile
@@ -66,6 +70,7 @@ services:
       - hpc-network
 
   node-agent-gpu-1:
+    profiles: ["hpc"]
     build:
       context: ./apps/node-agent
       dockerfile: Dockerfile
@@ -80,6 +85,7 @@ services:
       - hpc-network
 
   web:
+    profiles: ["hpc"]
     build:
       context: ./apps/web
       dockerfile: Dockerfile
@@ -97,6 +103,7 @@ services:
       - hpc-network
 
   prometheus:
+    profiles: ["hpc"]
     image: prom/prometheus:latest
     container_name: hpc-prometheus
     restart: unless-stopped
@@ -114,6 +121,7 @@ services:
       - hpc-network
 
   grafana:
+    profiles: ["hpc"]
     image: grafana/grafana:11.0.0
     container_name: hpc-grafana
     ports:
@@ -131,6 +139,7 @@ services:
       - hpc-network
 
   loki:
+    profiles: ["hpc"]
     image: grafana/loki:3.0.0
     container_name: hpc-loki
     restart: unless-stopped
@@ -143,6 +152,7 @@ services:
       - hpc-network
 
   promtail:
+    profiles: ["hpc"]
     image: grafana/promtail:3.0.0
     container_name: hpc-promtail
     restart: unless-stopped
@@ -156,6 +166,7 @@ services:
       - hpc-network
 
   alertmanager:
+    profiles: ["hpc"]
     image: prom/alertmanager:latest
     container_name: hpc-alertmanager
     restart: unless-stopped
