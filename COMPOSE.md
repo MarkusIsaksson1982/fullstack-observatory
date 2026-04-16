@@ -33,7 +33,7 @@ git clone https://github.com/MarkusIsaksson1982/fullstack-server-configs.git
 ```bash
 cd fullstack-observatory
 cp .env.example .env
-docker compose -f docker-compose.fullstack.yml up -d --build
+docker compose -f docker-compose.fullstack.yml --profile fullstack up -d --build
 ```
 
 After startup (30–60 seconds):
@@ -41,14 +41,15 @@ After startup (30–60 seconds):
 - **Grafana** → http://localhost:3001 (admin / admin123)
 - **Prometheus** → http://localhost:9090
 - **Nginx proxy** → http://localhost (optional, forwards to API)
+- **Alertmanager** → http://localhost:9093
 
 ## Available commands
 
 ```bash
-docker compose -f docker-compose.fullstack.yml up -d --build    # start / rebuild
-docker compose -f docker-compose.fullstack.yml logs -f api      # tail API logs
-docker compose -f docker-compose.fullstack.yml down             # stop everything
-docker compose -f docker-compose.fullstack.yml ps               # status
+docker compose -f docker-compose.fullstack.yml --profile fullstack up -d --build  # start / rebuild
+docker compose -f docker-compose.fullstack.yml --profile fullstack logs -f api   # tail API logs
+docker compose -f docker-compose.fullstack.yml --profile fullstack down           # stop everything
+docker compose -f docker-compose.fullstack.yml --profile fullstack ps             # status
 ```
 
 ## Services included

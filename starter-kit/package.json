@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "cd ../fullstack-api-server && npm run dev",
-    "compose": "docker compose -f ../docker-compose.fullstack.yml up -d"
+    "compose": "docker compose -f ../docker-compose.fullstack.yml --profile fullstack up -d"
   }
 }

@@ -21,7 +21,7 @@ The root Fullstack Observatory serves as the **foundational production reference
 
 ```bash
 cd hpc-observatory
-docker compose --profile hpc up -d
+docker compose up -d
 ```
 
 After ~30 seconds open:
@@ -29,40 +29,45 @@ After ~30 seconds open:
 - **http://localhost:3003** -> Grafana (`admin` / `admin123`)
 - **http://localhost:9090** -> Prometheus + HPC metrics
 - **http://localhost:8080** -> Scheduler API
+- **http://localhost:9093** -> Alertmanager
 
 ### Fullstack Observatory
 
 ```bash
 cp .env.example .env
-docker compose -f docker-compose.fullstack.yml up -d
+docker compose -f docker-compose.fullstack.yml --profile fullstack up -d
 ```
 
 After ~30 seconds open:
 - **http://localhost** -> API (redirects to health)
 - **http://localhost:3001** -> Grafana (`admin` / `admin123`)
 - **http://localhost:9090** -> Prometheus + alerts
+- **http://localhost:9093** -> Alertmanager
 
-## Running Both Safely (No Port Conflicts)
+## Port Conflicts
 
-The two observatories use **different ports** so they can run simultaneously:
+Both observatories share some ports. **Run them one at a time**, or stop the other first:
 
-```bash
-# Terminal 1 – HPC-Observatory (recommended first)
-cd hpc-observatory
-docker compose --profile hpc up -d
-
-# Terminal 2 – Fullstack Observatory
-docker compose -f docker-compose.fullstack.yml -p fullstack up -d
-```
-
-Or run them one at a time (stop the other first):
+| Shared Port | Service |
+|-------------|---------|
+| 9090 | Prometheus |
+| 9093 | Alertmanager |
 
 ```bash
 # Stop HPC containers
 docker stop hpc-*
 
 # Start Fullstack Observatory
-docker compose -f docker-compose.fullstack.yml up -d
+docker compose -f docker-compose.fullstack.yml --profile fullstack up -d
+```
+
+```bash
+# Stop Fullstack containers
+docker stop fullstack-*
+
+# Start HPC-Observatory
+cd hpc-observatory
+docker compose up -d
 ```
 
 ## Review Paths
