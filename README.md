@@ -9,7 +9,7 @@ This repository contains **two distinct but related observatories**:
 | Observatory | Purpose | Tech Stack Highlights | Hero Use Case | Default Ports |
 |------------|--------|---------------------|--------------|---------------|
 | **Fullstack Observatory** (root) | Production backend patterns & full-stack reference architecture | Node.js/Express, Postgres, Nginx, Prometheus, Grafana, IaC, security hardening | General full-stack / DevOps / backend roles | `:3000` (web), `:8080` (API), `:9090` (Prometheus), `:3001` (Grafana) |
-| **HPC-Observatory** (`hpc-observatory/`) | **Supplementary showcase** – GPU-aware PBS-style scheduler with real-time observability | Go scheduler + Python hooks, Next.js 15 dashboard, Prometheus metrics, Grafana dashboards | **HPC Scheduler Integration Engineer** + any observability / distributed-systems role | `:3002` (web), `:3003` (Grafana), `:8080` (scheduler), `:9090` (Prometheus) |
+| **HPC-Observatory** (`hpc-observatory/`) | **Supplementary showcase** – GPU-aware PBS-style scheduler with real-time observability | Go scheduler + Python hooks, Next.js 15 dashboard, Prometheus metrics, Grafana dashboards | **HPC Scheduler Integration Engineer** + any observability / distributed-systems role | `:3002` (web), `:3003` (Grafana), `:8080` (scheduler), `:9091` (Prometheus), `:9094` (Alertmanager) |
 
 **HPC-Observatory** is the **visual hero** of the repo — the interactive Next.js dashboard with live job submission, node grid, and beautiful Grafana panels is what recruiters will remember.
 
