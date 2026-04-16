@@ -26,7 +26,7 @@ docker compose up -d
 
 After ~30 seconds open:
 - **http://localhost:3002** -> HPC Web Dashboard (the visual hero)
-- **http://localhost:3003** -> Grafana (`admin` / `admin123`)
+- **http://localhost:3003** -> Grafana (`admin` / `admin`)
 - **http://localhost:9090** -> Prometheus + HPC metrics
 - **http://localhost:8080** -> Scheduler API
 - **http://localhost:9093** -> Alertmanager
