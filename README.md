@@ -27,9 +27,9 @@ docker compose up -d
 After ~30 seconds open:
 - **http://localhost:3002** -> HPC Web Dashboard (the visual hero)
 - **http://localhost:3003** -> Grafana (`admin` / `admin123`)
-- **http://localhost:9090** -> Prometheus + HPC metrics
+- **http://localhost:9091** -> Prometheus + HPC metrics
 - **http://localhost:8080** -> Scheduler API
-- **http://localhost:9093** -> Alertmanager
+- **http://localhost:9094** -> Alertmanager
 
 ### Fullstack Observatory
 
@@ -44,30 +44,23 @@ After ~30 seconds open:
 - **http://localhost:9090** -> Prometheus + alerts
 - **http://localhost:9093** -> Alertmanager
 
-## Port Conflicts
+## Running Both Observatories
 
-Both observatories share some ports. **Run them one at a time**, or stop the other first:
+Both observatories can run **simultaneously** since they use shifted ports:
 
-| Shared Port | Service |
-|-------------|---------|
-| 9090 | Prometheus |
-| 9093 | Alertmanager |
-
-```bash
-# Stop HPC containers
-docker stop hpc-*
-
-# Start Fullstack Observatory
-docker compose -f docker-compose.fullstack.yml --profile fullstack up -d
-```
+| Service | Fullstack Observatory | HPC-Observatory |
+|---------|----------------------|-----------------|
+| Web | :3001 (Grafana) | :3002 (web), :3003 (Grafana) |
+| Prometheus | :9090 | :9091 |
+| Alertmanager | :9093 | :9094 |
 
 ```bash
-# Stop Fullstack containers
-docker stop fullstack-*
-
-# Start HPC-Observatory
+# Terminal 1 – HPC-Observatory
 cd hpc-observatory
 docker compose up -d
+
+# Terminal 2 – Fullstack Observatory
+docker compose -f docker-compose.fullstack.yml --profile fullstack up -d
 ```
 
 ## Review Paths

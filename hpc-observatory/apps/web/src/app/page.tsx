@@ -39,13 +39,13 @@ export default function Dashboard() {
         </div>
 
         <div className="flex gap-4 mt-4 text-sm">
-          <a href="http://localhost:9090" target="_blank" className="text-blue-400 hover:underline flex items-center gap-1">
+          <a href="http://localhost:9091" target="_blank" className="text-blue-400 hover:underline flex items-center gap-1">
             <Server className="w-4 h-4" /> Prometheus
           </a>
           <a href="http://localhost:3003" target="_blank" className="text-purple-400 hover:underline flex items-center gap-1">
             <Activity className="w-4 h-4" /> Grafana
           </a>
-          <a href="http://localhost:9093" target="_blank" className="text-orange-400 hover:underline flex items-center gap-1">
+          <a href="http://localhost:9094" target="_blank" className="text-orange-400 hover:underline flex items-center gap-1">
             <Zap className="w-4 h-4" /> Alertmanager
           </a>
         </div>

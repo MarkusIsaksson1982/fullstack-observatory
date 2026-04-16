@@ -27,9 +27,10 @@ docker compose up --build
 ```
 
 Then open:
-- **Web UI**: http://localhost:3000
-- **Grafana**: http://localhost:3001 (admin/admin)
-- **Prometheus**: http://localhost:9090
+- **Web UI**: http://localhost:3002
+- **Grafana**: http://localhost:3003 (admin/admin123)
+- **Prometheus**: http://localhost:9091
+- **Alertmanager**: http://localhost:9094
 
 Submit jobs from the UI and watch them flow through the scheduler in real time.
 

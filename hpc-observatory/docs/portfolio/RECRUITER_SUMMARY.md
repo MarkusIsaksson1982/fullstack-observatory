@@ -75,8 +75,8 @@ docker compose up --build
 Then open:
 - **Web UI**: http://localhost:3002
 - **Grafana**: http://localhost:3003 (admin/admin123)
-- **Prometheus**: http://localhost:9090
-- **Alertmanager**: http://localhost:9093
+- **Prometheus**: http://localhost:9091
+- **Alertmanager**: http://localhost:9094
 
 ## Interview Talking Points
 

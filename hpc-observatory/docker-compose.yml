@@ -112,7 +112,7 @@ services:
       - ./infra/prometheus/hpc-rules.yml:/etc/prometheus/hpc-rules.yml:ro
       - prometheus_data:/prometheus
     ports:
-      - "9090:9090"
+      - "9091:9090"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -174,7 +174,7 @@ services:
       - ./infra/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
       - alertmanager_data:/alertmanager
     ports:
-      - "9093:9093"
+      - "9094:9093"
     networks:
       - hpc-network
 
