@@ -21,7 +21,7 @@ The root Fullstack Observatory serves as the **foundational production reference
 
 ```bash
 cd hpc-observatory
-docker compose up -d
+docker compose --profile hpc up -d
 ```
 
 After ~30 seconds open:
@@ -34,7 +34,7 @@ After ~30 seconds open:
 
 ```bash
 cp .env.example .env
-docker compose --profile fullstack up -d
+docker compose -f docker-compose.fullstack.yml up -d
 ```
 
 After ~30 seconds open:
@@ -49,21 +49,19 @@ The two observatories use **different ports** so they can run simultaneously:
 ```bash
 # Terminal 1 – HPC-Observatory (recommended first)
 cd hpc-observatory
-docker compose up -d
+docker compose --profile hpc up -d
 
 # Terminal 2 – Fullstack Observatory
-# (from parent directory with unique project name)
 docker compose -f docker-compose.fullstack.yml -p fullstack up -d
 ```
 
-Or run them one at a time:
+Or run them one at a time (stop the other first):
 
 ```bash
-# HPC-Observatory only
-cd hpc-observatory && docker compose up -d
+# Stop HPC containers
+docker stop hpc-*
 
-# Fullstack Observatory only
-# (stop HPC first with: docker stop hpc-*)
+# Start Fullstack Observatory
 docker compose -f docker-compose.fullstack.yml up -d
 ```
 
