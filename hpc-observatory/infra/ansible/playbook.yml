@@ -1,0 +1,44 @@
+---
+- name: Setup HPC Infrastructure
+  hosts: all
+  become: yes
+
+  roles:
+    - role: compute_nodes
+      when: "'compute_nodes' in group_names"
+
+    - role: gpu_nodes
+      when: "'gpu_nodes' in group_names"
+
+    - role: scheduler
+      when: "'scheduler' in group_names"
+
+- name: Deploy Applications
+  hosts: apps
+  become: yes
+
+  tasks:
+    - name: Deploy Prometheus exporters
+      ansible.builtin.copy:
+        src: ../exporters/
+        dest: /opt/monitoring/exporters
+        mode: '0755'
+
+    - name: Configure Prometheus
+      ansible.builtin.template:
+        src: prometheus.yml.j2
+        dest: /etc/prometheus/prometheus.yml
+        mode: '0644'
+      notify: Restart Prometheus
+
+    - name: Configure Grafana datasources
+      ansible.builtin.copy:
+        src: grafana-datasources.yml
+        dest: /etc/grafana/provisioning/datasources/datasources.yml
+        mode: '0644'
+
+  handlers:
+    - name: Restart Prometheus
+      ansible.builtin.service:
+        name: prometheus
+        state: restarted

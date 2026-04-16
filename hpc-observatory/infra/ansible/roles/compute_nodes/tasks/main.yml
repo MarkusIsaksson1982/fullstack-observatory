@@ -1,0 +1,92 @@
+---
+- name: Configure HPC Compute Nodes
+  hosts: compute_nodes
+  become: yes
+  vars:
+    pbs_version: "23.05.0"
+    cluster_name: "hpc-observatory"
+
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install common packages
+      ansible.builtin.apt:
+        name:
+          - build-essential
+          - emacs
+          - vim
+          - wget
+          - curl
+          - git
+          - htop
+          - tmux
+          - nfs-common
+          - chrony
+        state: present
+
+    - name: Configure hostname
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
+
+    - name: Configure /etc/hosts
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        line: "{{ hostvars[item].ansible_host }} {{ item }}"
+        state: present
+      loop: "{{ groups['all'] }}"
+
+    - name: Configure NTP
+      ansible.builtin.copy:
+        dest: /etc/chrony/chrony.conf
+        content: |
+          server 0.pool.ntp.org iburst
+          server 1.pool.ntp.org iburst
+          server 2.pool.ntp.org iburst
+          server 3.pool.ntp.org iburst
+          driftfile /var/lib/chrony/chrony.drift
+          logdir /var/log/chrony
+          makestep 1.0 3
+        mode: '0644'
+
+    - name: Create HPC directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - /opt/hpc
+        - /opt/hpc/software
+        - /opt/hpc/data
+        - /opt/hpc/scratch
+
+    - name: Configure kernel parameters for HPC
+      ansible.builtin.sysctl:
+        name: "{{ item.name }}"
+        value: "{{ item.value }}"
+        state: present
+        sysctl_file: /etc/sysctl.d/99-hpc.conf
+      loop:
+        - { name: 'net.core.somaxconn', value: '1024' }
+        - { name: 'kernel.shmmax', value: '17179869184' }
+        - { name: 'kernel.shmall', value: '4194304' }
+
+    - name: Configure limits
+      ansible.builtin.lineinfile:
+        path: /etc/security/limits.conf
+        line: "{{ item }}"
+        state: present
+      loop:
+        - "* soft nofile 65536"
+        - "* hard nofile 65536"
+        - "* soft nproc 65536"
+        - "* hard nproc 65536"
+
+    - name: Setup node exporter
+      ansible.builtin.systemd_service:
+        name: node_exporter
+        enabled: yes
+        state: started
+      when: "'monitoring' in group_names"

@@ -1,0 +1,74 @@
+groups:
+  - name: hpc_scheduler_alerts
+    rules:
+      - alert: HighQueueDepth
+        expr: hpc_scheduler_queue_depth > 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High job queue depth"
+          description: "Queue depth is {{ $value }} jobs"
+
+      - alert: LowBackfillEfficiency
+        expr: hpc_scheduler_backfill_efficiency < 0.3
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low backfill efficiency"
+          description: "Backfill efficiency is {{ $value | humanizePercentage }}"
+
+      - alert: HighCPUUtilization
+        expr: hpc_scheduler_node_utilization{resource="cpu"} > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU utilization on {{ $labels.node }}"
+          description: "CPU utilization is {{ $value | humanizePercentage }}"
+
+      - alert: HighGPUUtilization
+        expr: hpc_scheduler_gpu_utilization > 0.95
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High GPU utilization"
+          description: "GPU utilization is {{ $value | humanizePercentage }}"
+
+      - alert: SchedulerDown
+        expr: up{job="hpc-scheduler"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "HPC Scheduler is down"
+          description: "The HPC scheduler has been unreachable for 1 minute"
+
+      - alert: ManyJobFailures
+        expr: rate(hpc_scheduler_jobs_by_state{state="failed"}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High job failure rate"
+          description: "Job failures are occurring at {{ $value }} per second"
+
+      - alert: SchedulingDelayHigh
+        expr: histogram_quantile(0.95, rate(hpc_scheduler_scheduling_delay_seconds_bucket[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High scheduling delay"
+          description: "95th percentile scheduling delay is {{ $value }}s"
+
+      - alert: NodeDown
+        expr: hpc_scheduler_node_utilization == 0
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Node {{ $labels.node }} may be down"
+          description: "Node has had no utilization for 10 minutes"

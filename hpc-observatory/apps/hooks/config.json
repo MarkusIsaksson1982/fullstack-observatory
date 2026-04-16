@@ -1,0 +1,57 @@
+{
+  "version": 2,
+  "hooks": [
+    {
+      "name": "prolog",
+      "enabled": true,
+      "event": "queuejob",
+      "order": 100,
+      "user": "pbsadmin",
+      "alarm": 30,
+      "interactive": false,
+      "script": "python /opt/hpc-observatory/hooks/prolog.py"
+    },
+    {
+      "name": "epilog",
+      "enabled": true,
+      "event": "job_end",
+      "order": 100,
+      "user": "pbsadmin",
+      "alarm": 60,
+      "interactive": false,
+      "script": "python /opt/hpc-observatory/hooks/epilog.py"
+    },
+    {
+      "name": "gpu_check",
+      "enabled": true,
+      "event": "job_prologue",
+      "order": 50,
+      "user": "root",
+      "script": "python /opt/hpc-observatory/hooks/gpu_check.py"
+    },
+    {
+      "name": "memory_limit",
+      "enabled": true,
+      "event": "job_prologue",
+      "order": 60,
+      "user": "root",
+      "script": "python /opt/hpc-observatory/hooks/memory_limit.py"
+    },
+    {
+      "name": "job_accounting",
+      "enabled": true,
+      "event": "job_epilogue",
+      "order": 50,
+      "user": "pbsadmin",
+      "script": "python /opt/hpc-observatory/hooks/job_accounting.py"
+    },
+    {
+      "name": "burst_to_cloud",
+      "enabled": false,
+      "event": "queuejob",
+      "order": 200,
+      "user": "pbsadmin",
+      "script": "python /opt/hpc-observatory/hooks/burst_to_cloud.py"
+    }
+  ]
+}

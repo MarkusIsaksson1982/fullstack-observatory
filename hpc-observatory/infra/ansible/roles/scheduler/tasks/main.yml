@@ -1,0 +1,67 @@
+---
+- name: Setup HPC Scheduler
+  hosts: scheduler
+  become: yes
+
+  tasks:
+    - name: Create scheduler system user
+      ansible.builtin.user:
+        name: pbsadmin
+        comment: "PBS Administrator"
+        shell: /bin/bash
+        home: /var/spool/pbs
+
+    - name: Install scheduler dependencies
+      ansible.builtin.apt:
+        name:
+          - postgresql
+          - postgresql-contrib
+          - libpq-dev
+        state: present
+
+    - name: Create scheduler directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+        owner: pbsadmin
+        group: pbsadmin
+      loop:
+        - /var/spool/pbs
+        - /var/spool/pbs/spool
+        - /var/spool/pbs/undelivered
+        - /var/spool/pbs/mom_logs
+        - /var/spool/pbs/mom_priv
+        - /var/log/pbs
+
+    - name: Deploy scheduler binary
+      ansible.builtin.copy:
+        src: ../../apps/scheduler/
+        dest: /opt/hpc-observatory/scheduler
+        mode: '0755'
+
+    - name: Create systemd service
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/hpc-scheduler.service
+        content: |
+          [Unit]
+          Description=HPC Scheduler Service
+          After=network.target postgresql.service
+
+          [Service]
+          Type=simple
+          User=pbsadmin
+          WorkingDirectory=/opt/hpc-observatory/scheduler
+          ExecStart=/opt/hpc-observatory/scheduler/scheduler server
+          Restart=always
+          RestartSec=10
+
+          [Install]
+          WantedBy=multi-user.target
+        mode: '0644'
+
+    - name: Enable and start scheduler
+      ansible.builtin.systemd:
+        name: hpc-scheduler
+        enabled: yes
+        state: started

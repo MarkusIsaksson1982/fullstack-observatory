@@ -1,0 +1,178 @@
+services:
+  scheduler:
+    build:
+      context: ./apps/scheduler
+      dockerfile: Dockerfile
+    container_name: hpc-scheduler
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - SCHEDULER_INTERVAL=5s
+      - MAX_BACKFILL_JOBS=50
+      - FAIRSHARE_WINDOW=24h
+    networks:
+      - hpc-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  hook-executor:
+    build:
+      context: ./apps/hooks
+      dockerfile: Dockerfile
+    container_name: hpc-hooks
+    restart: unless-stopped
+    environment:
+      - PUSHGATEWAY_URL=http://prometheus:9091
+      - CLUSTER_NAME=hpc-cluster
+    volumes:
+      - ./apps/hooks/hooks:/opt/hpc-observatory/hooks
+      - hook_logs:/var/log/pbs/hooks
+    networks:
+      - hpc-network
+
+  metrics-exporter:
+    build:
+      context: ./apps/hooks
+      dockerfile: Dockerfile.exporter
+    container_name: hpc-metrics
+    restart: unless-stopped
+    environment:
+      - PUSHGATEWAY_URL=prometheus:9091
+      - INTERVAL=15
+    depends_on:
+      - scheduler
+    networks:
+      - hpc-network
+
+  node-agent-1:
+    build:
+      context: ./apps/node-agent
+      dockerfile: Dockerfile
+    container_name: hpc-node-bm-01
+    restart: unless-stopped
+    environment:
+      - NODE_NAME=bm-01
+      - NODE_TYPE=baremetal
+      - NODE_CPUS=64
+      - NODE_GPUS=0
+    networks:
+      - hpc-network
+
+  node-agent-gpu-1:
+    build:
+      context: ./apps/node-agent
+      dockerfile: Dockerfile
+    container_name: hpc-node-gpu-01
+    restart: unless-stopped
+    environment:
+      - NODE_NAME=gpu-01
+      - NODE_TYPE=gpu
+      - NODE_CPUS=32
+      - NODE_GPUS=4
+    networks:
+      - hpc-network
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: hpc-web
+    restart: unless-stopped
+    ports:
+      - "3002:3000"
+    environment:
+      - SCHEDULER_URL=http://scheduler:8080
+      - NEXT_PUBLIC_PROMETHEUS_URL=http://prometheus:9090
+      - NEXT_PUBLIC_GRAFANA_URL=http://grafana:3000
+    depends_on:
+      - scheduler
+    networks:
+      - hpc-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: hpc-prometheus
+    restart: unless-stopped
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./infra/prometheus/hpc-rules.yml:/etc/prometheus/hpc-rules.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+    networks:
+      - hpc-network
+
+  grafana:
+    image: grafana/grafana:11.0.0
+    container_name: hpc-grafana
+    ports:
+      - "3003:3000"
+    volumes:
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - hpc-network
+
+  loki:
+    image: grafana/loki:3.0.0
+    container_name: hpc-loki
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki_data:/loki
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - hpc-network
+
+  promtail:
+    image: grafana/promtail:3.0.0
+    container_name: hpc-promtail
+    restart: unless-stopped
+    volumes:
+      - ./infra/promtail/promtail.yml:/etc/promtail/promtail.yml:ro
+      - /var/log:/var/log:ro
+    command: -config.file=/etc/promtail/promtail.yml
+    depends_on:
+      - loki
+    networks:
+      - hpc-network
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: hpc-alertmanager
+    restart: unless-stopped
+    volumes:
+      - ./infra/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager_data:/alertmanager
+    ports:
+      - "9093:9093"
+    networks:
+      - hpc-network
+
+volumes:
+  prometheus_data:
+  grafana-storage:
+  loki_data:
+  alertmanager_data:
+  hook_logs:
+
+networks:
+  hpc-network:
+    driver: bridge
+    name: hpc-network

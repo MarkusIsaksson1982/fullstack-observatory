@@ -1,0 +1,60 @@
+---
+- name: Configure GPU Nodes
+  hosts: gpu_nodes
+  become: yes
+  vars:
+    cuda_version: "12.3"
+
+  tasks:
+    - name: Install NVIDIA driver dependencies
+      ansible.builtin.apt:
+        name:
+          - gcc
+          - make
+          - linux-headers-{{ ansible_kernel }}
+          - kernel-devel
+        state: present
+
+    - name: Install NVIDIA Container Toolkit
+      ansible.builtin.apt:
+        name:
+          - nvidia-container-toolkit
+        state: present
+
+    - name: Configure NVIDIA runtime
+      ansible.builtin.copy:
+        dest: /etc/docker/daemon.json
+        content: |
+          {
+            "runtimes": {
+              "nvidia": {
+                "path": "nvidia-container-runtime",
+                "runtimeArgs": []
+              }
+            },
+            "default-runtime": "nvidia"
+          }
+        mode: '0644'
+      notify: Restart Docker
+
+    - name: Create CUDA sample directory
+      ansible.builtin.file:
+        path: /opt/cuda/samples
+        state: directory
+        mode: '0755'
+
+    - name: Verify NVIDIA driver
+      ansible.builtin.command: nvidia-smi
+      register: nvidia_smi
+      changed_when: false
+      failed_when: nvidia_smi.rc != 0
+
+    - name: Display GPU info
+      ansible.builtin.debug:
+        msg: "{{ nvidia_smi.stdout_lines[0:3] }}"
+
+  handlers:
+    - name: Restart Docker
+      ansible.builtin.service:
+        name: docker
+        state: restarted
