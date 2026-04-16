@@ -44,29 +44,27 @@ After ~30 seconds open:
 
 ## Running Both Safely (No Port Conflicts)
 
+The two observatories use **different ports** so they can run simultaneously:
+
 ```bash
-# Terminal 1 – HPC-Observatory (shifted ports)
+# Terminal 1 – HPC-Observatory (recommended first)
 cd hpc-observatory
 docker compose up -d
 
-# Terminal 2 – Fullstack Observatory (classic ports)
-docker compose --profile fullstack up -d
+# Terminal 2 – Fullstack Observatory
+# (from parent directory with unique project name)
+docker compose -f docker-compose.fullstack.yml -p fullstack up -d
 ```
 
-Or use the combined orchestrator:
+Or run them one at a time:
 
 ```bash
-# Run only HPC-Observatory
-docker compose --profile hpc up -d
+# HPC-Observatory only
+cd hpc-observatory && docker compose up -d
 
-# Run only Fullstack Observatory
-docker compose --profile fullstack up -d
-
-# Run BOTH safely at the same time
-docker compose --profile fullstack,hpc up -d
-
-# Stop everything
-docker compose down
+# Fullstack Observatory only
+# (stop HPC first with: docker stop hpc-*)
+docker compose -f docker-compose.fullstack.yml up -d
 ```
 
 ## Review Paths
