@@ -2,6 +2,8 @@
 
 **A production-grade, 12-layer observability showcase** — built as a living portfolio piece.
 
+> **Live demo:** `<TODO: paste Vercel URL after first deploy>` — interactive HPC dashboard with sample data. For the real-time experience (live scheduler, Prometheus, Grafana), clone this repo and run `docker compose up` per the Quick Start below.
+
 ## Two Observatories – One Repository
 
 This repository contains **two distinct but related observatories**:

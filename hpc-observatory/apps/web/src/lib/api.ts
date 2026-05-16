@@ -1,8 +1,17 @@
 import { Job, Node, Queue, ClusterStats, HPCApi } from '@/lib/types'
+import {
+  isDemoMode,
+  getDemoJobs,
+  getDemoNodes,
+  getDemoQueues,
+  getDemoStats,
+  buildDemoSubmittedJob,
+} from '@/lib/demo-data'
 
 class HPCApiClient implements HPCApi {
 
   async fetchJobs(): Promise<Job[]> {
+    if (isDemoMode()) return getDemoJobs()
     try {
       const res = await fetch('/api/jobs')
       if (!res.ok) throw new Error('Failed to fetch jobs')
@@ -15,6 +24,7 @@ class HPCApiClient implements HPCApi {
   }
 
   async fetchNodes(): Promise<Node[]> {
+    if (isDemoMode()) return getDemoNodes()
     try {
       const res = await fetch('/api/nodes')
       if (!res.ok) throw new Error('Failed to fetch nodes')
@@ -27,6 +37,7 @@ class HPCApiClient implements HPCApi {
   }
 
   async fetchQueues(): Promise<Queue[]> {
+    if (isDemoMode()) return getDemoQueues()
     try {
       const res = await fetch('/api/queues')
       if (!res.ok) throw new Error('Failed to fetch queues')
@@ -39,6 +50,7 @@ class HPCApiClient implements HPCApi {
   }
 
   async fetchStats(): Promise<ClusterStats | null> {
+    if (isDemoMode()) return getDemoStats()
     try {
       const res = await fetch('/api/stats')
       if (!res.ok) throw new Error('Failed to fetch stats')
@@ -51,6 +63,7 @@ class HPCApiClient implements HPCApi {
   }
 
   async submitJob(job: Partial<Job>): Promise<Job | null> {
+    if (isDemoMode()) return buildDemoSubmittedJob(job)
     try {
       const res = await fetch('/api/submit', {
         method: 'POST',
@@ -66,6 +79,7 @@ class HPCApiClient implements HPCApi {
   }
 
   async deleteJob(jobId: string): Promise<boolean> {
+    if (isDemoMode()) return true
     try {
       const res = await fetch(`/api/jobs?jobId=${jobId}`, {
         method: 'DELETE'
