@@ -1,6 +1,7 @@
 'use client'
 
 import { useHPCCluster } from '@/lib/hooks'
+import { isDemoMode } from '@/lib/demo-data'
 import { StatsCards } from '@/components/StatsCards'
 import { NodeGrid } from '@/components/NodeGrid'
 import { JobTable } from '@/components/JobTable'
@@ -9,6 +10,7 @@ import { Activity, Server, Zap, Clock, RefreshCw } from 'lucide-react'
 
 export default function Dashboard() {
   const { jobs, nodes, stats, loading, error, refresh, submitJob, deleteJob } = useHPCCluster()
+  const demo = isDemoMode()
 
   return (
     <div className="min-h-screen p-6">
@@ -30,25 +32,39 @@ export default function Dashboard() {
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
               Refresh
             </button>
-            <div className="flex items-center gap-2 px-4 py-2 bg-green-500/20 text-green-400 rounded-lg">
-              <Activity className="w-4 h-4" />
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              Live
-            </div>
+            {demo ? (
+              <div className="flex items-center gap-2 px-4 py-2 bg-amber-500/20 text-amber-300 rounded-lg">
+                <Activity className="w-4 h-4" />
+                <span className="w-2 h-2 bg-amber-300 rounded-full"></span>
+                Demo
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 px-4 py-2 bg-green-500/20 text-green-400 rounded-lg">
+                <Activity className="w-4 h-4" />
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                Live
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="flex gap-4 mt-4 text-sm">
-          <a href="http://localhost:9091" target="_blank" className="text-blue-400 hover:underline flex items-center gap-1">
-            <Server className="w-4 h-4" /> Prometheus
-          </a>
-          <a href="http://localhost:3003" target="_blank" className="text-purple-400 hover:underline flex items-center gap-1">
-            <Activity className="w-4 h-4" /> Grafana
-          </a>
-          <a href="http://localhost:9094" target="_blank" className="text-orange-400 hover:underline flex items-center gap-1">
-            <Zap className="w-4 h-4" /> Alertmanager
-          </a>
-        </div>
+        {demo ? (
+          <p className="mt-4 text-sm text-slate-500">
+            Live Prometheus, Grafana, and Alertmanager UIs are part of the full Docker stack — run <code className="px-1 py-0.5 bg-slate-800 rounded">docker compose up</code> from the cloned repo to access them.
+          </p>
+        ) : (
+          <div className="flex gap-4 mt-4 text-sm">
+            <a href="http://localhost:9091" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline flex items-center gap-1">
+              <Server className="w-4 h-4" /> Prometheus
+            </a>
+            <a href="http://localhost:3003" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline flex items-center gap-1">
+              <Activity className="w-4 h-4" /> Grafana
+            </a>
+            <a href="http://localhost:9094" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline flex items-center gap-1">
+              <Zap className="w-4 h-4" /> Alertmanager
+            </a>
+          </div>
+        )}
       </header>
 
       {error && (
