@@ -14,10 +14,11 @@
     "lint": "eslint src tests"
   },
   "dependencies": {
-    "@observatory/logger": "file:../../packages/logger",
-    "@observatory/healthcheck": "file:../../packages/healthcheck",
     "@observatory/core": "file:../../packages/core",
+    "@observatory/healthcheck": "file:../../packages/healthcheck",
+    "@observatory/logger": "file:../../packages/logger",
     "@observatory/metrics": "file:../../packages/metrics",
+    "@vercel/speed-insights": "^2.0.0",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.1",

@@ -4,6 +4,7 @@ const createAuthenticate = require('./middleware/authenticate');
 const createCors = require('./middleware/cors');
 const createRateLimit = require('./middleware/rateLimit');
 const createRequestLogger = require('./middleware/requestLogger');
+const createSpeedInsights = require('./middleware/speedInsights');
 const createValidate = require('./middleware/validate');
 const createHealthRouter = require('./routes/health');
 const { createUsersRouter } = require('./routes/users');
@@ -25,6 +26,7 @@ function createApp(options = {}) {
   app.use(createCors({ origin: options.corsOrigin }));
   app.use(createRequestLogger({ logger }));
   app.use(metricsMiddleware);                    // ← shared metrics
+  app.use(createSpeedInsights({ enabled: options.speedInsightsEnabled })); // ← Vercel Speed Insights
   app.use(
     createRateLimit({
       max: options.rateLimitMax,

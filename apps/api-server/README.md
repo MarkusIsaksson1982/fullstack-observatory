@@ -38,12 +38,24 @@ The browser layer demonstrates six stages. This repo keeps the same stages in th
 
 1. `CORS`
 2. `Request Logger`
-3. `Rate Limiter`
-4. `Auth`
-5. `Validation`
-6. `Route Handler`
+3. `Metrics`
+4. `Speed Insights`
+5. `Rate Limiter`
+6. `Auth`
+7. `Validation`
+8. `Route Handler`
 
 To avoid inserting an extra app-level parser middleware into that flow, JSON parsing is handled inside the validation middleware for routes that accept bodies.
+
+### Speed Insights
+
+Vercel Speed Insights is integrated via middleware that automatically injects the tracking script into HTML responses. Since this is primarily a REST API server serving JSON, the Speed Insights middleware is dormant by default but will activate if HTML content is ever served.
+
+To enable/disable Speed Insights:
+- Set `speedInsightsEnabled` option when creating the app
+- Or control via environment variable (future enhancement)
+
+The middleware only affects HTML responses and has no impact on JSON API responses.
 
 ## Authentication
 
@@ -125,6 +137,7 @@ Copy `.env.example` to `.env` and update values as needed.
 │   │   ├── requestLogger.js
 │   │   ├── rateLimit.js
 │   │   ├── authenticate.js
+│   │   ├── speedInsights.js
 │   │   └── validate.js
 │   ├── routes/
 │   │   ├── health.js
