@@ -4,7 +4,7 @@ Next.js 15 dashboard for the HPC-Observatory scheduler. Two ways to view it.
 
 ## Live demo on Vercel
 
-`<TODO: paste Vercel URL after first deploy>` — runs with `NEXT_PUBLIC_DEMO_MODE=true`. Sample jobs, nodes, and stats; submit/delete actions are no-ops. The DEMO MODE banner across the top makes the snapshot explicit.
+<https://hpc-observatory.vercel.app/> — runs with `NEXT_PUBLIC_DEMO_MODE=true`. Sample jobs, nodes, and stats; submit/delete actions are no-ops. The DEMO MODE banner across the top makes the snapshot explicit.
 
 ## Local against the live scheduler
 
