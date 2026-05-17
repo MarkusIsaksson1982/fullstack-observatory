@@ -65,6 +65,17 @@ export default function Dashboard() {
             </a>
           </div>
         )}
+
+        <a
+          href="https://hpc-observatory-mcp.onrender.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 mt-3 px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-lg text-sm text-blue-300 hover:bg-blue-500/20 transition-colors"
+        >
+          <Zap className="w-4 h-4" />
+          Live MCP Server
+          <span className="text-blue-400/70 font-mono text-xs">hpc-observatory-mcp.onrender.com/mcp</span>
+        </a>
       </header>
 
       {error && (
