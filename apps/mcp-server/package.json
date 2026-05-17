@@ -1,0 +1,20 @@
+{
+  "name": "fullstack-mcp-server",
+  "version": "0.1.0",
+  "description": "Minimal MCP server for the Full Stack Observatory (Render-deployable, demo tools).",
+  "private": true,
+  "type": "module",
+  "main": "server.js",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "express": "^4.21.2",
+    "zod": "^3.24.1"
+  }
+}
