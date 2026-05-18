@@ -1,0 +1,42 @@
+interface:
+  display_name: "Agensi Skill Publishing Assistant with Grok"
+  short_description: "A practical pre-upload checker that reviews your draft SKILL.md, flags the most common issues that cause rejections or low conversions, and helps you get your skill ready for successful publication on Agensi."
+  default_prompt: "I have a draft SKILL.md. Please apply the Agensi Skill Publishing Assistant with Grok and give me a Publishing Readiness Report."
+
+metadata:
+  price: 0
+  tags:
+    - grok
+    - agensi
+    - publishing
+    - skill-authoring
+    - quality
+    - meta
+    - productivity
+  version: 1.2.0
+  target_agent: grok
+  agensi_slug: agensi-skill-publishing-assistant-with-grok
+
+compatibility:
+  note: |
+    This skill follows the open SKILL.md standard and is specifically optimized for **Grok** inside the **Grok Build CLI / TUI**.
+
+permissions:
+  profile: "Read + Documentation Generation (Lightweight)"
+
+  tools_used:
+    terminal_shell: "No"
+    read_files: "Yes – Required to analyze your draft SKILL.md file."
+    write_files: "Yes – May generate improved marketplace copy or suggested fixes."
+    browser: "No"
+    network_access: "No"
+
+  file_scopes:
+    - "**/*.md"
+    - ".agentskills/**"
+
+  environment_variables: []
+  allowed_hosts: []
+
+  notes: |
+    This is a free, lightweight pre-upload assistant. It focuses on the most common issues that affect approval and early performance on Agensi. For deeper evaluation, scoring, root cause analysis, or full rewrites of your skills, use the paid Skill Evaluation & Iteration with Grok ($5) skill.

@@ -1,0 +1,45 @@
+interface:
+  display_name: "Agensi Free Skill Explorer with Grok"
+  short_description: "Search Agensi for high-quality free skills based on your needs, get quick insights, and receive clear recommendations on which ones are worth trying or adapting."
+  default_prompt: "Search Agensi for free skills related to [your need]. Please apply the Agensi Free Skill Explorer with Grok skill."
+
+metadata:
+  price: 0
+  tags:
+    - grok
+    - agensi
+    - free-skills
+    - discovery
+    - meta
+    - productivity
+  version: 1.2.1
+  target_agent: grok
+  agensi_slug: agensi-free-skill-explorer-with-grok
+
+compatibility:
+  note: |
+    This skill follows the open SKILL.md standard and is designed to work with agents that have access to the Agensi MCP server. It is specifically optimized for **Grok** inside the **Grok Build CLI / TUI**.
+
+permissions:
+  profile: "Search + Light Analysis (Read + Network via MCP)"
+
+  tools_used:
+    terminal_shell: "Sometimes – Required to run the Agensi MCP proxy when needed."
+    read_files: "Sometimes – May read locally available skills for comparison."
+    write_files: "Yes – Required to generate exploration reports and recommendations."
+    browser: "No"
+    network_access: "Yes – Connects to Agensi via the MCP proxy to search for free skills."
+
+  file_scopes:
+    - "**/*.md"
+    - ".agentskills/**"
+
+  environment_variables:
+    - "AGENSI_API_KEY (optional – required only for accessing purchased skills)"
+
+  allowed_hosts:
+    - "Agensi MCP server"
+
+  notes: |
+    This is a free, discovery-focused skill. It provides lightweight guidance and recommendations. For deep evaluation, scoring, and major improvements, users should use the paid Skill Evaluation & Iteration with Grok ($5) and Agensi Skill Scout & Evaluator with Grok ($10) skills.
+```

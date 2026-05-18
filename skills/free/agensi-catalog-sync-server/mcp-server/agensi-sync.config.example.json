@@ -1,0 +1,36 @@
+{
+  "creator_slug": "YOUR_AGENSI_CREATOR_SLUG",
+  "marketplace": {
+    "api_key_env": "AGENSI_API_KEY",
+    "mcp_url_env": "AGENSI_MCP_URL",
+    "default_mcp_url": "https://mcp.agensi.io/mcp"
+  },
+  "policy": {
+    "live_listing_cap": 50,
+    "default_drift_policy": "batch-with-version",
+    "require_version_for_publish_or_update": true
+  },
+  "roots": {
+    "codex": {
+      "local_root": "C:/Users/YOURNAME/dev/codex/agensi",
+      "catalog": "catalog.yaml",
+      "layout": "catalog-yaml",
+      "status_export": "reports/live-local-status.json"
+    },
+    "gemini": {
+      "local_root": "C:/Users/YOURNAME/dev/gemini/agensi",
+      "catalog": "catalog.yaml",
+      "layout": "catalog-yaml"
+    },
+    "grok": {
+      "local_root": "C:/Users/YOURNAME/dev/grok/agensi/skills",
+      "layout": "status-tier-folders"
+    }
+  },
+  "shared_paths": {
+    "cache_dir": "C:/Users/YOURNAME/dev/agensi-shared/data",
+    "live_local_dir": "C:/Users/YOURNAME/dev/agensi-shared/data/live-local",
+    "reports_dir": "C:/Users/YOURNAME/dev/agensi-shared/reports",
+    "live_local_schema": "C:/Users/YOURNAME/dev/agensi-shared/schemas/live-local-status.schema.json"
+  }
+}

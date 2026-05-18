@@ -1,0 +1,44 @@
+interface:
+  display_name: "Agensi Skill Authoring"
+  short_description: "A practical, step-by-step guide to writing clear, effective, and reusable SKILL.md files that follow the Agensi open standard and work reliably across different AI coding agents."
+  default_prompt: "I want to write a new SKILL.md file for [describe the purpose]. Please apply the Agensi Skill Authoring framework. Start with Phase 1 (Define Purpose and Boundaries)."
+
+metadata:
+  price: 0
+  tags:
+    - agensi
+    - skill-authoring
+    - meta
+    - documentation
+    - best-practices
+    - free
+  version: 1.2.0
+  target_agent: grok
+  agensi_slug: agensi-skill-authoring
+
+compatibility:
+  note: |
+    This skill follows the open SKILL.md standard and is designed to work across a wide range of agents. It is specifically optimized for **Grok** inside the **Grok Build CLI / TUI**.
+
+permissions:
+  profile: "Documentation and Skill Creation (Read + Write)"
+
+  tools_used:
+    terminal_shell: "Sometimes – Useful for exploring example skills or validating file structures."
+    read_files: "Yes – Essential for studying existing high-quality skills as reference material."
+    write_files: "Yes – Required to create and iterate on new SKILL.md files."
+    browser: "No"
+    network_access: "No"
+
+  file_scopes:
+    - "**/*.md"
+    - ".agentskills/**"
+    - "grok/agensi/skills/**"
+
+  environment_variables: []
+
+  allowed_hosts: []
+
+  notes: |
+    This is a general-purpose free skill for anyone creating or improving skills using the Agensi format.
+```

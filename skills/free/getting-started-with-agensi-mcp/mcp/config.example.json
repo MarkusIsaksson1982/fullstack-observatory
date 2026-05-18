@@ -1,0 +1,18 @@
+{
+  "creator_slug": "your-agensi-creator-slug",
+  "marketplace": {
+    "api_key_env": "AGENSI_API_KEY",
+    "mcp_url_env": "AGENSI_MCP_URL",
+    "default_mcp_url": "https://mcp.agensi.io/mcp"
+  },
+  "roots": {
+    "default": {
+      "local_root": "<ABSOLUTE_PATH_TO_YOUR_SKILLS_FOLDER>",
+      "layout": "status-tier-folders"
+    }
+  },
+  "shared_paths": {
+    "cache_dir": "<ABSOLUTE_PATH_TO_SHARED_CACHE>",
+    "reports_dir": "<ABSOLUTE_PATH_TO_REPORTS>"
+  }
+}
