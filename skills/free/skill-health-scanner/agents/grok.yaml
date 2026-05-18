@@ -1,0 +1,42 @@
+interface:
+  display_name: "Skill Health Scanner"
+  short_description: "Quickly diagnose any SKILL.md or system prompt (from any agent) and receive a model-aware report on quality, portability, and the highest-impact fixes needed."
+  default_prompt: "I have this skill or prompt. Can you scan it and tell me what needs to change for [my target models]?"
+
+metadata:
+  price: 0
+  tags:
+    - free
+    - skill-evaluation
+    - prompt-audit
+    - productivity
+    - cross-agent
+    - model-agnostic
+    - diagnostic
+  version: 1.6.0
+  target_agent: grok
+  agensi_slug: skill-health-scanner
+
+compatibility:
+  note: |
+    This skill follows the open SKILL.md standard and is designed to work with any major agent or model family (Claude, GPT, Gemini, Grok, Cursor, Copilot, and capable local models). It is intentionally vendor-neutral.
+
+permissions:
+  profile: "Analysis + Report Generation (Read-Only Input | Write-Optional Output)"
+
+  tools_used:
+    terminal_shell: "No"
+    read_files: "Yes – only when the user provides file paths"
+    write_files: "Yes – only when generating the optional report file"
+    browser: "No"
+    network_access: "No"
+
+  file_scopes:
+    - "Any files the user explicitly provides for analysis"
+
+  environment_variables: []
+  allowed_hosts: []
+
+  notes: |
+    This is a lightweight diagnostic tool. It reads the material you provide and writes a report. It never executes or modifies the skill being analyzed. It works equally well when you simply paste text into any chat interface.
+```

@@ -1,0 +1,49 @@
+interface:
+  display_name: "Agensi Catalog Sync Server"
+  short_description: "Neutral, multi-agent MCP server for synchronizing local Agensi skill libraries with the live marketplace. Core infrastructure for Grok, Gemini, and Codex."
+  default_prompt: "Set up the Agensi Catalog Sync Server so I can monitor drift and publishing readiness across my Grok, Gemini, and Codex skill libraries."
+
+metadata:
+  price: 0
+  tags:
+    - agensi
+    - mcp
+    - sync
+    - library-audit
+    - publishing
+    - meta
+    - free
+    - multi-agent
+  version: 1.0.0
+  target_agent: gemini
+  agensi_slug: agensi-catalog-sync-server
+
+compatibility:
+  note: |
+    This skill is the neutral, shared foundation for Agensi library synchronization. It has been developed and tested with Grok, Gemini, and Codex. The bundled MCP server can be used by any MCP-compatible agent when properly configured.
+
+permissions:
+  profile: "Analysis + Limited Write + Network (MCP Server)"
+
+  tools_used:
+    terminal_shell: "Yes - Required to run the bundled MCP server process."
+    read_files: "Yes - Scans local skill directories across configured roots."
+    write_files: "Sometimes - Generates reports and can prepare skills for publishing (with explicit user approval)."
+    browser: "No"
+    network_access: "Yes - Connects to the Agensi MCP server for live marketplace data."
+
+  file_scopes:
+    - "mcp-server/"
+    - "agents/"
+    - "reports/"
+    - "data/"
+
+  environment_variables:
+    - "AGENSI_API_KEY (required)"
+    - "AGENSI_SYNC_CONFIG (path to multi-root configuration)"
+
+  allowed_hosts:
+    - "mcp.agensi.io"
+
+  notes: |
+    This skill ships its own MCP server. After installation, configure your Gemini CLI environment to launch the server from the mcp-server/ directory. The server supports multiple agent roots via configuration.

@@ -1,0 +1,42 @@
+interface:
+  display_name: "Grok CLI Best Practices"
+  short_description: "Essential patterns, workflows, and safety disciplines for getting the best results when working with Grok in the Grok Build CLI / TUI environment."
+  default_prompt: "I want to work effectively and safely with Grok in the CLI on [describe the task or project]. Please apply the Grok CLI Best Practices framework."
+
+metadata:
+  price: 0
+  tags:
+    - grok
+    - cli
+    - best-practices
+    - workflow
+    - productivity
+    - safety
+  version: 1.1.0
+  target_agent: grok
+  agensi_slug: grok-cli-best-practices
+
+compatibility:
+  note: |
+    This skill is specifically optimized for **Grok** inside the **Grok Build CLI / TUI**.
+
+permissions:
+  profile: "Guidance + Light Documentation (Read + Write)"
+
+  tools_used:
+    terminal_shell: "Sometimes – Useful for demonstrating CLI commands and verifying workflows."
+    read_files: "Yes – Needed to analyze project structure and context for best-practice advice."
+    write_files: "Sometimes – Used when creating session notes, todo lists, or ARCHIVED.md handoff documents."
+    browser: "No"
+    network_access: "No"
+
+  file_scopes:
+    - Project root and relevant source files
+    - "grok/agensi/skills/**" (for referencing examples)
+
+  environment_variables: []
+
+  allowed_hosts: []
+
+  notes: |
+    This skill provides guidance and process discipline for using the Grok Build CLI effectively. It involves reading project files and occasionally creating documentation or notes.

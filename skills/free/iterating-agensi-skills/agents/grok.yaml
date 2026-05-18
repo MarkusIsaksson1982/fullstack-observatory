@@ -1,0 +1,45 @@
+interface:
+  display_name: "Iterating Agensi Skills"
+  short_description: "A practical, lightweight framework for reviewing, diagnosing, and systematically improving existing SKILL.md files based on real usage, feedback, and observed weaknesses."
+  default_prompt: "I have a skill called [Skill Name] that isn’t working as well as I hoped. Please apply the Iterating Agensi Skills framework. Start with Phase 1 and Phase 2."
+
+metadata:
+  price: 0
+  tags:
+    - agensi
+    - skill-iteration
+    - feedback
+    - improvement
+    - meta
+    - best-practices
+    - free
+  version: 1.2.0
+  target_agent: grok
+  agensi_slug: iterating-agensi-skills
+
+compatibility:
+  note: |
+    This skill follows the open SKILL.md standard and is designed to work across a wide range of agents. It is specifically optimized for **Grok** inside the **Grok Build CLI / TUI**.
+
+permissions:
+  profile: "Analysis and Documentation (Read + Write)"
+
+  tools_used:
+    terminal_shell: "Sometimes – Useful for exploring skill directories and running validation commands."
+    read_files: "Yes – Required to analyze existing skill files in detail."
+    write_files: "Yes – Required to create improved versions of skills."
+    browser: "No"
+    network_access: "No"
+
+  file_scopes:
+    - "**/*.md"
+    - ".agentskills/**"
+    - "grok/agensi/skills/**"
+
+  environment_variables: []
+
+  allowed_hosts: []
+
+  notes: |
+    This is a general-purpose free skill for anyone who wants to improve skills they have already written.
+```

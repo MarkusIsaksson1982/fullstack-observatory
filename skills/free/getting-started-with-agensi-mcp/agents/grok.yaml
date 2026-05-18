@@ -1,0 +1,45 @@
+interface:
+  display_name: "Getting Started with Agensi MCP"
+  short_description: "Beginner-friendly onboarding to set up the Agensi Model Context Protocol (MCP) connection for your agent. Unlocks advanced skills including reference architectures and portfolio tools once connected."
+  default_prompt: "I want to get started with Agensi skills that use MCP. Please walk me through setting it up for my current agent."
+
+metadata:
+  price: 0
+  tags:
+    - agensi
+    - mcp
+    - onboarding
+    - setup
+    - meta
+    - free
+  version: 1.0.1
+  target_agent: grok
+  agensi_slug: getting-started-with-agensi-mcp
+
+compatibility:
+  note: |
+    This skill has been developed with Grok in Grok Build, Gemini 3.1 in Gemini CLI, and GPT-5.5 in the Codex CLI on Windows 11. It may need adaptations to setup in various environments and CLI configurations.
+
+permissions:
+  profile: "Setup & Light Analysis (Read + Network)"
+
+  tools_used:
+    terminal_shell: "Yes – Required to run the MCP proxy/server during setup."
+    read_files: "Yes – Reads configuration and skill files."
+    write_files: "Sometimes – Creates configuration files during setup."
+    browser: "No"
+    network_access: "Yes – Connects to the Agensi MCP server."
+
+  file_scopes:
+    - "mcp/"
+    - "agents/"
+
+  environment_variables:
+    - "AGENSI_API_KEY (optional for basic use)"
+
+  allowed_hosts:
+    - "mcp.agensi.io"
+
+  notes: |
+    This skill focuses on helping you get the Agensi MCP connection working. After setup you will be ready to use skills like the Free Skill Explorer.
+```

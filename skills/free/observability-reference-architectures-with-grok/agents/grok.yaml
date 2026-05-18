@@ -1,0 +1,44 @@
+interface:
+  display_name: "Observability Reference Architectures with Grok"
+  short_description: "A structured methodology for designing, evaluating, and evolving production-grade observability systems using the Full Stack Observatory as the primary reference implementation."
+  default_prompt: "I need to design or evaluate the observability architecture for [describe the system or portfolio]. Please apply the Observability Reference Architectures with Grok skill."
+
+metadata:
+  price: 0
+  tags:
+    - grok
+    - observability
+    - reference-architecture
+    - architecture
+    - deployment
+    - documentation
+    - mcp
+    - free
+  version: 1.0.0
+  target_agent: grok
+  agensi_slug: observability-reference-architectures-with-grok
+
+compatibility:
+  note: |
+    This skill follows the open SKILL.md standard and is specifically optimized for **Grok** inside the **Grok Build CLI / TUI**.
+
+permissions:
+  profile: "Analysis + Strategy (Read + Write)"
+
+  tools_used:
+    terminal_shell: "Sometimes – Useful for exploring the Full Stack Observatory repository."
+    read_files: "Yes – Required to analyze the reference architecture and related documentation."
+    write_files: "Sometimes – Required when producing architecture assessments or updating related documentation."
+    browser: "Sometimes – Useful for reviewing live deployments and documentation in the reference repository."
+    network_access: "No"
+
+  file_scopes:
+    - "fullstack-observatory/**"
+    - Any services or systems being analyzed for observability architecture
+
+  environment_variables: []
+  allowed_hosts: []
+
+  notes: |
+    This skill is primarily focused on architectural thinking and reference models. It is intended to be used together with the Full Stack Observatory repository as the main reference implementation.
+```

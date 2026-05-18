@@ -1,0 +1,40 @@
+interface:
+  display_name: "Task Finisher with Grok"
+  short_description: "A disciplined execution framework that forces your AI to reliably complete tasks end-to-end — breaking work into verifiable steps, maintaining momentum, and producing clean, review-ready deliverables instead of partial or rambling output."
+  default_prompt: "I need to [describe the task clearly, including any constraints or desired outcome]. Please apply Task Finisher with Grok and drive the work all the way to a clean, complete, review-ready deliverable."
+
+metadata:
+  price: 0
+  tags:
+    - grok
+    - execution
+    - productivity
+    - task-management
+    - meta
+    - finishing
+  version: 1.3.0
+  target_agent: grok
+  agensi_slug: task-finisher-with-grok
+
+compatibility:
+  note: |
+    This skill follows the open SKILL.md standard and is specifically optimized for **Grok** inside the **Grok Build CLI / TUI**.
+
+permissions:
+  profile: "Execution & Documentation (Read + Write + Controlled Terminal)"
+
+  tools_used:
+    terminal_shell: "Sometimes – Useful when the task involves running commands, building, testing, or inspecting files."
+    read_files: "Yes – Required to understand context, previous work, and source material."
+    write_files: "Yes – Required to produce the final deliverables and any supporting documentation."
+    browser: "No"
+    network_access: "No"
+
+  file_scopes:
+    - "**/*"
+
+  environment_variables: []
+  allowed_hosts: []
+
+  notes: |
+    This skill focuses on reliable, verifiable completion. It works best when paired with strong planning (Plan Mode Mastery) and authoring (Agensi Skill Authoring with Grok) skills. It deliberately emphasizes verification gates to prevent partial or low-quality output.

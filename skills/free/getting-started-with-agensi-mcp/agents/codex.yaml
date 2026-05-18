@@ -1,0 +1,56 @@
+interface:
+  display_name: "Getting Started with Agensi MCP"
+  short_description: "Beginner-friendly onboarding to set up the Agensi Model Context Protocol (MCP) connection for Codex-style GPT coding agents."
+  default_prompt: "I want to get started with Agensi skills that use MCP. Please walk me through setting it up for my current agent."
+
+metadata:
+  price: 0
+  tags:
+    - agensi
+    - mcp
+    - onboarding
+    - setup
+    - meta
+    - free
+    - cross-platform
+    - multi-agent
+    - openai
+    - codex
+  version: 1.0.0
+  target_agent: codex
+  agensi_slug: getting-started-with-agensi-mcp
+
+compatibility:
+  note: |
+    This adapter is intended for Codex-style GPT coding workflows and other OpenAI/GPT-based local coding agents that support MCP stdio servers.
+
+    Exact MCP configuration paths, commands, and restart behavior may differ between Codex CLI versions or GPT-based coding environments. Use the README's generic MCP server template and ask the local agent to confirm the exact setup for the current environment.
+
+permissions:
+  profile: "Setup & Light Analysis (Read + Network)"
+
+  tools_used:
+    terminal_shell: "Yes – Required to run the MCP proxy/server during setup."
+    read_files: "Yes – Reads configuration and skill files."
+    write_files: "Sometimes – Creates configuration files during setup."
+    browser: "No"
+    network_access: "Yes – Connects to the Agensi MCP server."
+
+  file_scopes:
+    - "mcp/"
+    - "agents/"
+
+  environment_variables:
+    - "AGENSI_API_KEY (optional for basic local startup checks; recommended or required for live marketplace features)"
+    - "AGENSI_CONFIG (path to the local config.json file)"
+    - "AGENSI_MCP_URL (optional override for the Agensi MCP endpoint)"
+
+  allowed_hosts:
+    - "mcp.agensi.io"
+
+  notes: |
+    This skill focuses on helping users connect a Codex-style GPT coding agent to Agensi through the bundled stdio-to-HTTP MCP proxy.
+
+    The proxy validates AGENSI_CONFIG for setup coherence but does not parse local roots itself. Advanced catalog, cache, and publishing workflows may use that config separately.
+
+    Before making changes to local skill folders, prefer read-only inspection first. Only write to skill roots the user explicitly chooses.

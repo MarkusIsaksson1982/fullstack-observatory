@@ -1,0 +1,43 @@
+interface:
+  display_name: "Effective Debugging with Grok"
+  short_description: "A rigorous 5-phase debugging framework that forces systematic reproduction, hypothesis-driven investigation, and verified resolution — eliminating shotgun debugging and building lasting diagnostic discipline."
+  default_prompt: "I'm seeing the following issue: [describe the problem clearly]. Expected: [X] Actual: [Y]. Please apply Effective Debugging with Grok. Start with Phase 1."
+
+metadata:
+  price: 0
+  tags:
+    - grok
+    - debugging
+    - troubleshooting
+    - workflow
+    - productivity
+    - free
+  version: 1.3.0
+  target_agent: grok
+  agensi_slug: effective-debugging-with-grok
+
+compatibility:
+  note: |
+    This skill follows the open SKILL.md standard and is specifically optimized for **Grok** inside the **Grok Build CLI / TUI**.
+
+permissions:
+  profile: "Read + Diagnostic Execution (Controlled Write)"
+
+  tools_used:
+    terminal_shell: "Yes – Required to reproduce bugs, run tests, and execute diagnostic commands."
+    read_files: "Yes – Essential for exploring relevant code during investigation."
+    write_files: "Sometimes – Only for temporary diagnostics or the final minimal fix after user approval."
+    browser: "No"
+    network_access: "No"
+
+  file_scopes:
+    - "src/**"
+    - "tests/**"
+    - "**/*.log"
+    - "**/*.md"
+
+  environment_variables: []
+  allowed_hosts: []
+
+  notes: |
+    This skill deliberately limits write access. All permanent changes must be explicitly approved by the user after the root cause has been confirmed. The process is designed to prevent reckless or unverified modifications.
