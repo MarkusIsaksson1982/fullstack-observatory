@@ -1,0 +1,28 @@
+{
+  "approvedPaths": [
+    "README.md",
+    "START_HERE.md",
+    "ARCHITECTURE.md",
+    "COMPOSE.md",
+    "RECRUITER_SUMMARY.md",
+    "ROADMAP.md",
+    "docs/reference-architectures/observability/**/*.md",
+    "hpc-observatory/README.md",
+    "hpc-observatory/docs/**/*.md",
+    "apps/*/README.md",
+    "apps/*/docs/**/*.md",
+    "packages/*/README.md"
+  ],
+  "skills": [
+    "skills/free/**/*.md",
+    "skills/5/**/*.md",
+    "skills/6/**/*.md",
+    "skills/7/**/*.md",
+    "skills/8/**/*.md"
+  ],
+  "metadataDefaults": {
+    "audience": ["engineer", "agent"],
+    "observatory": "fullstack"
+  },
+  "output": "apps/mcp-server/data/doc-index.json"
+}
