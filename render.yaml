@@ -5,6 +5,7 @@ services:
     region: oregon
     plan: free
     rootDir: .
+    nodeVersion: 22
     buildCommand: cd apps/mcp-server && npm install && npm run build:index
     startCommand: cd apps/mcp-server && npm start
     healthCheckPath: /health
