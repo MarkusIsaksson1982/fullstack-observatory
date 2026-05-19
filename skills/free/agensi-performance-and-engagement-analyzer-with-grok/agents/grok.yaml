@@ -1,0 +1,45 @@
+interface:
+  display_name: "Agensi Performance & Engagement Analyzer with Grok"
+  short_description: "A data-driven skill that analyzes live Agensi marketplace signals to identify what drives traction and conversions, with focus on high-signal users and content patterns."
+  default_prompt: "I want to understand what is currently working on the Agensi platform. Please apply the Agensi Performance & Engagement Analyzer with Grok skill."
+
+metadata:
+  price: 0
+  tags:
+    - grok
+    - agensi
+    - analytics
+    - market-intelligence
+    - performance-analysis
+    - mcp
+    - meta
+    - free
+  version: 1.0.0
+  target_agent: grok
+  agensi_slug: agensi-performance-and-engagement-analyzer-with-grok
+
+compatibility:
+  note: |
+    This skill follows the open SKILL.md standard and is specifically optimized for **Grok** inside the **Grok Build CLI / TUI**. It is designed to work with the Agensi Catalog MCP tools.
+
+permissions:
+  profile: "Analysis + Research (Read + Network)"
+
+  tools_used:
+    terminal_shell: "Sometimes – Useful for running local analysis scripts or MCP tooling."
+    read_files: "Yes – Required when analyzing local skill files in conjunction with marketplace data."
+    write_files: "Sometimes – Required when producing structured reports and recommendations."
+    browser: "Sometimes – Useful for verifying public marketplace listings."
+    network_access: "Yes – Required to query live Agensi marketplace data via MCP."
+
+  file_scopes:
+    - "Your local Agensi skill library (for comparison against marketplace data)"
+    - "Any generated analysis reports"
+
+  environment_variables: []
+  allowed_hosts:
+    - "mcp.agensi.io"
+
+  notes: |
+    This skill is intended to provide strategic and tactical intelligence about the Agensi platform. It focuses on analyzing engagement patterns, particularly differences between high-signal users and general consumers, to improve skill development decisions.
+```
