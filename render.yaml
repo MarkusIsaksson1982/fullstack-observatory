@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: observatory-reference-docs
+    env: node
+    region: oregon          # Change if you prefer another region
+    plan: free              # Switch to "starter" or higher for production
+    rootDir: .              # Root of the monorepo
+    buildCommand: cd apps/mcp-server && npm install && npm run build:index
+    startCommand: cd apps/mcp-server && npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Add any other env vars here if needed later
+    autoDeploy: true
+    branch: main            # Change to your default branch if different

@@ -5,3 +5,10 @@ coverage/
 .env
 .env.*
 !.env.example
+
+# Ignore packaged skill zip files (they come from the Agensi dev folder during sync)
+skills/**/*.zip
+skills/*/*.zip
+skills/*/*/*.zip
+
+apps/mcp-server/data/doc-index.json

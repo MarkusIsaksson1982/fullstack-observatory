@@ -7,6 +7,7 @@
     "packages/*"
   ],
   "scripts": {
+    "build:doc-index": "node scripts/build-observatory-doc-index.js",
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
@@ -16,11 +17,15 @@
     "compose:down": "docker compose -f docker-compose.fullstack.yml --profile fullstack down"
   },
   "devDependencies": {
-    "turbo": "^2.4.4",
     "@tsconfig/node20": "^1.0.0",
+    "turbo": "^2.4.4",
     "typescript": "^5.8.2"
   },
   "engines": {
     "node": "22.x"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "zod": "^4.4.3"
   }
 }

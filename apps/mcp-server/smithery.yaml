@@ -1,0 +1,6 @@
+name: observatory-reference-docs
+runtime: docker
+build:
+  dockerfile: Dockerfile
+  context: ../..
+start: npm start
