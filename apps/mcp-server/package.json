@@ -1,10 +1,13 @@
 {
   "name": "observatory-reference-docs",
   "version": "0.1.0",
+  "private": true,
   "type": "module",
+  "description": "Read-only MCP server exposing the Full Stack Observatory reference documentation and skills.",
   "scripts": {
     "build:index": "node ../../scripts/build-observatory-doc-index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
