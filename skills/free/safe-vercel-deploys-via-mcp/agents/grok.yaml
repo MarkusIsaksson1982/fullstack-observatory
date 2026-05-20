@@ -1,0 +1,29 @@
+interface:
+  display_name: "Safe Vercel Deploys via MCP with Grok"
+  short_description: "Safely observe and control Vercel deployments from Grok. Complements automatic GitHub deploys with strong guardrails, a preferred redeploy action, and environment variable tools. Features a dedicated public demonstration deployment as the official Documentation URL."
+  default_prompt: "I want to safely inspect my Vercel projects and deployments and be ready to perform controlled redeploys when needed. Please apply the Safe Vercel Deploys via MCP with Grok skill. Start with read-only discovery and confirm guardrails before any write action."
+
+metadata:
+  price: 0
+  tags: ["grok", "mcp", "vercel", "deployment", "devops", "infrastructure", "meta", "cross-platform"]
+  version: 0.1.0
+  target_agent: grok
+  agensi_slug: safe-vercel-deploys-via-mcp
+
+permissions:
+  profile: "Deployment Observation + Gated Writes (Network + Controlled Write via MCP)"
+
+  environment_variables:
+    - "VERCEL_TOKEN"
+    - "VERCEL_ALLOW_DEPLOYS"
+    - "VERCEL_ALLOWED_PROJECTS"
+
+  allowed_hosts:
+    - "api.vercel.com"
+
+  notes: |
+    Designed to complement (not replace) Vercel’s automatic GitHub deployment workflow.
+    Preferred gated action: vercel.deployments.redeploy
+    Environment variable tools are included for cross-platform synchronization use cases with the Hub.
+    All write operations are blocked unless VERCEL_ALLOW_DEPLOYS=true and the project is in the allow list.
+    The dedicated public demo deployment (apps/vercel-mcp) serves as the live documentation and example.
