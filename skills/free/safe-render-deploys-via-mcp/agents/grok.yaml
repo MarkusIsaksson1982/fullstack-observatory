@@ -1,0 +1,41 @@
+interface:
+  display_name: "Safe Render Deploys via MCP"
+  short_description: "Focused skill for safely deploying and managing services on Render using a dedicated MCP driver with strong guardrails. Designed to work standalone or with the Cross-Platform Synchronization Hub. The live demo serves as the public example and Agensi Documentation URL."
+  default_prompt: "I want to safely deploy and manage a service on Render using MCP and Grok, with proper guardrails and documentation."
+
+metadata:
+  price: 0
+  tags: ["grok", "render", "deployment", "mcp", "guardrails"]
+  version: 0.1.3
+  target_agent: grok
+  agensi_slug: safe-render-deploys-via-mcp
+
+permissions:
+  profile: "Deployment + Documentation with mandatory explicit user approval on medium and high-stakes actions"
+
+  tools_used:
+    terminal_shell: "Sometimes – Used for cache-busting verification (cat, ls, head, stat) after Direct File Writing operations."
+    read_files: "Yes – Heavily used to inspect SKILL.md, existing deployment records, Git summaries, and related documentation before proposing changes."
+    write_files: "Yes – Required to create and maintain living deployment records and documentation using the Direct File Writing with Grok workflow."
+    browser: "Sometimes – Useful for verifying the live demo at https://hpc-observatory-mcp.onrender.com after a deployment or landing-page update."
+    network_access: "Yes – The render-mcp driver requires network access to call the Render REST API (api.render.com)."
+
+  file_scopes:
+    - "The user's current project workspace (especially files that affect their Render services: source code, render.yaml, configs, environment settings, and documentation)"
+    - "Any deployment record, changelog, or documentation markdown files the user explicitly asks the agent to create or update"
+    - "The skill's own files (when the user is the skill author or is customizing/extending the skill)"
+
+  environment_variables:
+    - "RENDER_API_KEY"
+    - "RENDER_ALLOW_DEPLOYS"
+    - "RENDER_ALLOWED_SERVICES"
+    - "PREFER_PRIMARY_TREE"
+    - "STRICT_WRITE_VERIFICATION"
+  allowed_hosts:
+    - "api.render.com"
+  notes: |
+    Low-stakes discovery and draft generation can proceed with low friction.
+    Medium and high-stakes decisions — especially any actual deployment or service metadata change — always require explicit user confirmation in the current session.
+    This skill follows the permission model defined in the Cross-Platform Synchronization Hub with Grok and is intended to be used together with it for multi-platform workflows.
+    PREFER_PRIMARY_TREE and STRICT_WRITE_VERIFICATION (and related variables) are defined and controlled by the Direct File Writing with Grok skill; this skill relies on them for disciplined, verifiable file operations.
+    The live demo at https://hpc-observatory-mcp.onrender.com is the canonical public example and should be referenced as the Documentation URL on Agensi.

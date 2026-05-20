@@ -296,7 +296,7 @@ app.get('/', (req, res) => {
         </div>
       </div>
       <div class="flex items-center gap-4 text-sm">
-        <a href="https://agensi.io/skills/safe-render-deploys-via-mcp" target="_blank" 
+        <a href="https://agensi.io/skills/safe-render-deploys-via-mcp-v0-1-3" target="_blank" 
            class="px-4 py-1.5 rounded-xl bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700 transition flex items-center gap-2">
           <span>View Skill on Agensi</span>
           <i class="fa-solid fa-external-link-alt text-xs"></i>
@@ -324,7 +324,7 @@ app.get('/', (req, res) => {
       </p>
 
       <div class="flex items-center gap-3 mt-8">
-        <a href="https://agensi.io/skills/safe-render-deploys-via-mcp" target="_blank"
+        <a href="https://agensi.io/skills/safe-render-deploys-via-mcp-v0-1-3" target="_blank"
            class="inline-flex items-center justify-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 transition text-white rounded-2xl font-semibold text-base shadow-sm">
           Get the Skill on Agensi
         </a>
