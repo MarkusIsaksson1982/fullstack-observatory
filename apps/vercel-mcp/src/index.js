@@ -102,7 +102,7 @@ app.get('/', (req, res) => {
           <span>View Skill on Agensi</span>
           <i class="fa-solid fa-external-link-alt text-xs"></i>
         </a>
-        <a href="https://github.com/MarkusIsaksson1982/fullstack-observatory" target="_blank"
+        <a href="https://github.com/MarkusIsaksson1982/fullstack-observatory/tree/main/skills/free/safe-vercel-deploys-via-mcp" target="_blank"
            class="px-4 py-1.5 rounded-xl border text-sm font-medium hover:bg-white transition flex items-center gap-2">
           <i class="fa-brands fa-github"></i>
           <span>Source</span>
