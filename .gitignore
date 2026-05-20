@@ -12,3 +12,6 @@ skills/*/*.zip
 skills/*/*/*.zip
 
 apps/mcp-server/data/doc-index.json
+# Personal/local-only tooling (do not commit)
+scripts/local-only/
+local-only/

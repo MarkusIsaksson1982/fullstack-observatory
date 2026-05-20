@@ -1,0 +1,30 @@
+scripts/.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Temporary / editor files
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+# Local-only / personal scripts (belt-and-suspenders)
+local-only/
+local-only/*

@@ -266,6 +266,162 @@ const transport = new StreamableHTTPServerTransport({
 await mcpServer.connect(transport);
 
 // ==================== ROUTES ====================
+
+// Public landing page - Live demonstration for the Agensi skill
+app.get('/', (req, res) => {
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safe Render Deploys via MCP • Live Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+    .section-header { @apply text-xl font-semibold text-slate-800 mb-3; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <div class="max-w-5xl mx-auto">
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-8 py-5 border-b bg-white">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-emerald-600 rounded-xl flex items-center justify-center">
+          <i class="fa-solid fa-rocket text-white text-xl"></i>
+        </div>
+        <div>
+          <div class="font-semibold text-xl tracking-tight">Safe Render Deploys via MCP</div>
+          <div class="text-[10px] text-emerald-600 -mt-1 font-medium">AGENT SKILL DEMONSTRATION</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-4 text-sm">
+        <a href="https://agensi.io/skills/safe-render-deploys-via-mcp" target="_blank" 
+           class="px-4 py-1.5 rounded-xl bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700 transition flex items-center gap-2">
+          <span>View Skill on Agensi</span>
+          <i class="fa-solid fa-external-link-alt text-xs"></i>
+        </a>
+        <a href="https://github.com/MarkusIsaksson1982/fullstack-observatory" target="_blank"
+           class="px-4 py-1.5 rounded-xl border text-sm font-medium hover:bg-white transition flex items-center gap-2">
+          <i class="fa-brands fa-github"></i>
+          <span>Source</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="px-8 pt-12 pb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold tracking-wider mb-4">
+        <div class="w-2 h-2 bg-emerald-600 rounded-full animate-pulse"></div>
+        LIVE ON RENDER
+      </div>
+      
+      <h1 class="text-5xl font-semibold tracking-tighter leading-none mb-3">
+        Safe Render Deploys<br>via MCP
+      </h1>
+      <p class="text-2xl text-slate-600 max-w-2xl">
+        A production-grade demonstration of controlled, guardrail-first deployments to Render using Grok and the Model Context Protocol.
+      </p>
+
+      <div class="flex items-center gap-3 mt-8">
+        <a href="https://agensi.io/skills/safe-render-deploys-via-mcp" target="_blank"
+           class="inline-flex items-center justify-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 transition text-white rounded-2xl font-semibold text-base shadow-sm">
+          Get the Skill on Agensi
+        </a>
+        <a href="#how-it-works" 
+           class="inline-flex items-center justify-center px-6 py-3 border border-slate-300 hover:bg-white transition rounded-2xl font-semibold text-base">
+          How it works
+        </a>
+      </div>
+      
+      <div class="mt-6 text-xs text-slate-500 flex items-center gap-2">
+        <i class="fa-solid fa-check-circle text-emerald-600"></i>
+        <span>Real deployment performed on 2026-05-20 • Status: <span class="font-semibold text-emerald-600">Live</span></span>
+      </div>
+    </div>
+
+    <!-- Status Banner -->
+    <div class="mx-8 mb-10 p-5 bg-white border rounded-3xl shadow-sm">
+      <div class="flex flex-col md:flex-row md:items-center gap-4">
+        <div>
+          <div class="uppercase tracking-[1px] text-xs font-semibold text-emerald-700">Current Deployment</div>
+          <div class="font-semibold text-lg">hpc-observatory-mcp</div>
+          <div class="text-sm text-slate-600">srv-d84gk99kh4rs73d6n3pg • Frankfurt • Free tier</div>
+        </div>
+        <div class="md:ml-auto flex items-center gap-4 text-sm">
+          <div class="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-1.5 rounded-2xl">
+            <i class="fa-solid fa-check"></i>
+            <span class="font-medium">Deploy #dep-d86pehbbc2fs73b86ej0 • Live</span>
+          </div>
+          <a href="https://dashboard.render.com/web/srv-d84gk99kh4rs73d6n3pg" target="_blank" 
+             class="text-emerald-600 hover:underline flex items-center gap-1 text-sm">
+            View on Render <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Value Proposition -->
+    <div class="px-8 grid md:grid-cols-3 gap-6 mb-12">
+      <div class="bg-white border rounded-3xl p-6">
+        <div class="text-emerald-600 mb-3"><i class="fa-solid fa-shield-halved text-2xl"></i></div>
+        <div class="font-semibold mb-2">Strong Guardrails</div>
+        <div class="text-sm text-slate-600">Deployments are blocked unless explicitly enabled via environment variables and an allow-list. No accidental production deploys.</div>
+      </div>
+      <div class="bg-white border rounded-3xl p-6">
+        <div class="text-emerald-600 mb-3"><i class="fa-solid fa-link text-2xl"></i></div>
+        <div class="font-semibold mb-2">MCP + Grok Native</div>
+        <div class="text-sm text-slate-600">The entire workflow is driven through a dedicated <code class="bg-slate-100 px-1.5 py-px rounded">render-mcp</code> server and the Multi-Platform Deployment skill.</div>
+      </div>
+      <div class="bg-white border rounded-3xl p-6">
+        <div class="text-emerald-600 mb-3"><i class="fa-solid fa-file-lines text-2xl"></i></div>
+        <div class="font-semibold mb-2">Living Documentation</div>
+        <div class="text-sm text-slate-600">Every deployment automatically produces a detailed, versioned record using Direct File Writing with Grok.</div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div id="how-it-works" class="px-8 mb-12">
+      <div class="section-header">How This Demonstration Works</div>
+      <div class="prose prose-slate max-w-none text-[15px] text-slate-700">
+        <ol class="list-decimal pl-5 space-y-2">
+          <li>Grok loads the <strong>Multi-Platform Deployment &amp; Living Documentation with Grok</strong> skill.</li>
+          <li>The <strong>render-mcp</strong> driver is started locally with strict guardrails (<code>RENDER_ALLOW_DEPLOYS=true</code> + service allow-list).</li>
+          <li>Services are discovered safely using <code>render.services.list</code>.</li>
+          <li>After explicit user approval, a deployment is triggered via <code>render.deploys.trigger</code>.</li>
+          <li>Direct File Writing with Grok generates the permanent deployment record you are seeing right now.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Technical Access -->
+    <div class="px-8 mb-12">
+      <div class="section-header">Technical Access</div>
+      <div class="grid sm:grid-cols-2 gap-4 text-sm">
+        <a href="/mcp" class="block p-4 border hover:bg-white rounded-2xl transition">
+          <div class="font-medium">MCP Endpoint</div>
+          <div class="font-mono text-emerald-700">POST /mcp</div>
+          <div class="text-xs text-slate-500 mt-1">Streamable HTTP transport for MCP clients</div>
+        </a>
+        <a href="/health" class="block p-4 border hover:bg-white rounded-2xl transition">
+          <div class="font-medium">Health &amp; Readiness</div>
+          <div class="font-mono text-emerald-700">GET /health</div>
+          <div class="text-xs text-slate-500 mt-1">Used by Render for health checks</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="px-8 pb-12 text-xs text-slate-500 border-t pt-8">
+      This live service is maintained as public documentation for the <strong>Safe Render Deploys via MCP</strong> skill on Agensi. 
+      All changes are made using the Direct File Writing with Grok primitive with full verification.
+    </div>
+  </div>
+</body>
+</html>`;
+  res.send(html);
+});
+
+// MCP endpoints
 app.post('/mcp', async (req, res) => {
   try {
     await transport.handleRequest(req, res, req.body);
