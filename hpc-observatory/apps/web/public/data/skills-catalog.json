@@ -1,0 +1,316 @@
+[
+  {
+    "id": "agensi-catalog-sync-server",
+    "name": "Agensi Catalog Sync Server",
+    "shortDescription": "Neutral, multi-agent MCP server for synchronizing local Agensi skill libraries with the live marketplace. Core infrastructure for Grok, Gemini, and Codex.",
+    "version": "1.0.0",
+    "tags": [
+      "grok",
+      "gemini",
+      "codex",
+      "agensi",
+      "mcp",
+      "sync",
+      "library-audit",
+      "publishing",
+      "meta",
+      "free"
+    ],
+    "targetAgents": [
+      "codex",
+      "gemini",
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "agensi-community-demand-analyzer-with-grok",
+    "name": "Agensi Community Demand Analyzer with Grok",
+    "shortDescription": "Analyzes what the Agensi community wants most by examining open skill requests, voting patterns, and signals from high-signal users.",
+    "version": "0.0.0",
+    "tags": [],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "agensi-free-skill-explorer-with-grok",
+    "name": "Agensi Free Skill Explorer with Grok",
+    "shortDescription": "Search Agensi for high-quality free skills based on your needs, get quick insights, and receive clear recommendations on which ones are worth trying or adapting.",
+    "version": "1.2.1",
+    "tags": [
+      "grok",
+      "agensi",
+      "free-skills",
+      "discovery",
+      "meta",
+      "productivity"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "agensi-performance-and-engagement-analyzer-with-grok",
+    "name": "Agensi Performance & Engagement Analyzer with Grok",
+    "shortDescription": "A data-driven skill that analyzes live Agensi marketplace signals to identify what drives traction and conversions, with focus on high-signal users and content patterns.",
+    "version": "1.0.0",
+    "tags": [
+      "grok",
+      "agensi",
+      "analytics",
+      "market-intelligence",
+      "performance-analysis",
+      "mcp",
+      "meta",
+      "free"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "agensi-skill-authoring",
+    "name": "Agensi Skill Authoring",
+    "shortDescription": "A practical, step-by-step guide to writing clear, effective, and reusable SKILL.md files that follow the Agensi open standard and work reliably across different AI coding agents.",
+    "version": "1.2.0",
+    "tags": [
+      "agensi",
+      "skill-authoring",
+      "meta",
+      "documentation",
+      "best-practices",
+      "free"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "agensi-skill-publishing-assistant-with-grok",
+    "name": "Agensi Skill Publishing Assistant with Grok",
+    "shortDescription": "A practical pre-upload checker that reviews your draft SKILL.md, flags the most common issues that cause rejections or low conversions, and helps you get your skill ready for successful publication on Agensi.",
+    "version": "1.2.0",
+    "tags": [
+      "grok",
+      "agensi",
+      "publishing",
+      "skill-authoring",
+      "quality",
+      "meta",
+      "productivity"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "effective-debugging-with-grok",
+    "name": "Effective Debugging with Grok",
+    "shortDescription": "A rigorous 5-phase debugging framework that forces systematic reproduction, hypothesis-driven investigation, and verified resolution — eliminating shotgun debugging and building lasting diagnostic discipline.",
+    "version": "1.3.0",
+    "tags": [
+      "grok",
+      "debugging",
+      "troubleshooting",
+      "workflow",
+      "productivity",
+      "free"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "getting-started-with-agensi-mcp",
+    "name": "Getting Started with Agensi MCP",
+    "shortDescription": "Beginner-friendly onboarding to set up the Agensi Model Context Protocol (MCP) connection for your agent. Unlocks advanced skills including reference architectures and portfolio tools once connected.",
+    "version": "1.0.1",
+    "tags": [
+      "agensi",
+      "mcp",
+      "onboarding",
+      "setup",
+      "meta",
+      "free",
+      "cross-platform",
+      "multi-agent"
+    ],
+    "targetAgents": [
+      "claude",
+      "codex",
+      "gemini",
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "grok-cli-best-practices",
+    "name": "Grok CLI Best Practices",
+    "shortDescription": "Essential patterns, workflows, and safety disciplines for getting the best results when working with Grok in the Grok Build CLI / TUI environment.",
+    "version": "1.1.0",
+    "tags": [
+      "grok",
+      "cli",
+      "best-practices",
+      "workflow",
+      "productivity",
+      "safety"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "iterating-agensi-skills",
+    "name": "Iterating Agensi Skills",
+    "shortDescription": "A practical, lightweight framework for reviewing, diagnosing, and systematically improving existing SKILL.md files based on real usage, feedback, and observed weaknesses.",
+    "version": "1.2.0",
+    "tags": [
+      "agensi",
+      "skill-iteration",
+      "feedback",
+      "improvement",
+      "meta",
+      "best-practices",
+      "free"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "observability-reference-architectures-with-grok",
+    "name": "Observability Reference Architectures with Grok",
+    "shortDescription": "A structured methodology for designing, evaluating, and evolving production-grade observability systems using the Full Stack Observatory as the primary reference implementation.",
+    "version": "1.0.0",
+    "tags": [
+      "grok",
+      "observability",
+      "reference-architecture",
+      "architecture",
+      "deployment",
+      "documentation",
+      "mcp",
+      "free"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "prompt-to-skill-converter-with-grok",
+    "name": "Prompt-to-Skill Converter with Grok",
+    "shortDescription": "Takes repetitive or vague prompts you keep writing and turns them into clean, reusable, well-structured SKILL.md files with clear triggers, boundaries, and output formats.",
+    "version": "1.3.0",
+    "tags": [
+      "grok",
+      "prompt-engineering",
+      "skill-authoring",
+      "productivity",
+      "meta"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "promptmaster-with-grok",
+    "name": "PromptMaster with Grok",
+    "shortDescription": "A systematic prompt engineering skill that takes raw, vague, or underdeveloped ideas and transforms them into high-performance, ready-to-use prompts optimized specifically for Grok’s strengths (deep reasoning, long context, wit, truth-seeking, and helpfulness).",
+    "version": "1.0.0",
+    "tags": [
+      "grok",
+      "prompt-engineering",
+      "meta",
+      "productivity",
+      "skill-authoring",
+      "free"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "safe-render-deploys-via-mcp",
+    "name": "Safe Render Deploys via MCP",
+    "shortDescription": "Focused skill for safely deploying and managing services on Render using a dedicated MCP driver with strong guardrails. Designed to work standalone or with the Cross-Platform Synchronization Hub. The live demo serves as the public example and Agensi Documentation URL.",
+    "version": "0.1.3",
+    "tags": [
+      "grok",
+      "render",
+      "deployment",
+      "mcp",
+      "guardrails",
+      "devops"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "skill-health-scanner",
+    "name": "Skill Health Scanner",
+    "shortDescription": "Quickly diagnose any SKILL.md or system prompt (from any agent) and receive a model-aware report on quality, portability, and the highest-impact fixes needed.",
+    "version": "1.6.0",
+    "tags": [
+      "free",
+      "skill-evaluation",
+      "prompt-audit",
+      "productivity",
+      "cross-agent",
+      "model-agnostic",
+      "diagnostic"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  },
+  {
+    "id": "task-finisher-with-grok",
+    "name": "Task Finisher with Grok",
+    "shortDescription": "A disciplined execution framework that forces your AI to reliably complete tasks end-to-end — breaking work into verifiable steps, maintaining momentum, and producing clean, review-ready deliverables instead of partial or rambling output.",
+    "version": "1.3.0",
+    "tags": [
+      "grok",
+      "execution",
+      "productivity",
+      "task-management",
+      "meta",
+      "finishing"
+    ],
+    "targetAgents": [
+      "grok"
+    ],
+    "source": "local-repo",
+    "price": 0
+  }
+]
