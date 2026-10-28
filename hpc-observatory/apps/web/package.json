@@ -7,7 +7,8 @@
     "build": "npm run generate:skills && next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:skills": "tsx scripts/generate-skills-catalog.ts"
+    "generate:skills": "tsx scripts/generate-skills-catalog.ts",
+    "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
